@@ -88,7 +88,7 @@ export function HeroSection() {
               ))}
             </ul>
             <Button className="bg-[#ffb700] text-white hover:bg-[#ffa600] transition-all duration-300 ease-in-out cta-button-glow text-lg px-8 py-3 relative overflow-hidden">
-              <span className="relative z-10">Let's Blast</span>
+              <span className="relative z-10">Let&apos;s Blast</span>
             </Button>
           </div>
           <div className="relative mt-8 lg:mt-0">
