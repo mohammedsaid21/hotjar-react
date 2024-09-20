@@ -89,7 +89,8 @@ General preferences:
 │   ├── page.tsx
 ├── components
 │   ├── sections
-│   │   └── hero-section.tsx
+│   │   ├── hero-section.tsx
+│   │   └── footer.tsx
 │   └── ui
 │       └── button.tsx
 ├── Design Docs
