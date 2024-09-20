@@ -68,7 +68,7 @@ General preferences:
 
 - Follow the user's requirements carefully & to the letter.
 - Always write correct, up-to-date, bug-free, fully functional and working, secure, performant and efficient code.
-- Focus on readability over being performant.
+- Focus on readability over being performant. what is the clear
 - Fully implement all requested functionality.
 - Leave NO todo's, placeholders or missing pieces in the code.
 - Be sure to reference file names.
@@ -79,35 +79,46 @@ General preferences:
 
 
 # Current File structure
+START_TREE
 .
-├── .next
-├── app
-│   ├── fonts
-│   ├── favicon.ico
-│   ├── globals.css
-│   ├── layout.tsx
-│   ├── page.tsx
-├── components
-│   ├── sections
-│   │   ├── hero-section.tsx
-│   │   └── footer.tsx
-│   └── ui
-│       └── button.tsx
-├── Design Docs
-│   ├── front-end.md
-│   └── honest pricing page.png
-├── lib
-│   └── utils.ts
-├── node_modules
 ├── .cursorrules
 ├── .eslintrc.json
 ├── .gitignore
+├── .vscode
+│   └── settings.json
+├── Design Docs
+│   ├── front-end.md
+│   └── honest pricing page.png
+├── README.md
+├── app
+│   ├── about
+│   │   └── page.tsx
+│   ├── fonts
+│   │   ├── GeistMonoVF.woff
+│   │   └── GeistVF.woff
+│   ├── globals.css
+│   ├── icon.ico
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── pricing
+│   │   └── page.tsx
+│   └── privacy-policy
+│       └── page.tsx
+├── components
+│   ├── sections
+│   │   ├── footer.tsx
+│   │   └── hero-section.tsx
+│   └── ui
+│       └── button.tsx
 ├── components.json
+├── lib
+│   └── utils.ts
 ├── next-env.d.ts
-├── next.config.js
+├── next.config.mjs
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.mjs
-├── README.md
+├── public
 ├── tailwind.config.ts
 └── tsconfig.json
+END_TREE
