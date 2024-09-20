@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
           <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
           
           <h2>8. Contact Us</h2>
-          <p>If you have any questions about this privacy policy, please contact us at privacy@loomli.com.</p>
+          <p>If you have any questions about this privacy policy, please contact us at privacy@loom.li</p>
         </div>
       </main>
       <Footer />
