@@ -99,6 +99,7 @@ START_TREE
 │   ├── globals.css
 │   ├── icon.ico
 │   ├── layout.tsx
+│   ├── not-found.tsx
 │   ├── page.tsx
 │   ├── pricing
 │   │   └── page.tsx
@@ -107,7 +108,8 @@ START_TREE
 ├── components
 │   ├── sections
 │   │   ├── footer.tsx
-│   │   └── hero-section.tsx
+│   │   ├── hero.tsx
+│   │   └── navbar.tsx
 │   └── ui
 │       └── button.tsx
 ├── components.json
@@ -119,6 +121,8 @@ START_TREE
 ├── package.json
 ├── postcss.config.mjs
 ├── public
+│   └── fancy-color-spiral-no-wm.jpg
 ├── tailwind.config.ts
+├── tsconfig.json
 └── tsconfig.json
 END_TREE

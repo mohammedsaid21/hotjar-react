@@ -1,5 +1,3 @@
-import { Footer } from '@/components/sections/footer'
-
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen flex flex-col">
@@ -32,7 +30,6 @@ export default function PrivacyPolicy() {
           <p>If you have any questions about this privacy policy, please contact us at privacy@loom.li</p>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }

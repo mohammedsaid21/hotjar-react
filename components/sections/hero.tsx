@@ -2,20 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
 
-export function HeroSection() {
-  const [scrolled, setScrolled] = useState(false)
+export default function Hero() {
   const [candidateCount, setCandidateCount] = useState(2614)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,24 +20,6 @@ export function HeroSection() {
       <div className="absolute inset-0 pointer-events-none z-10">
         <div className="h-full mx-auto border-l border-r border-gray-300 max-w-7xl"></div>
       </div>
-
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg shadow-md' : ''}`}>
-        <div className="container mx-auto px-4 py-4 max-w-7xl">
-          <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-gray-800">RecruiterAI</div>
-            <div className="hidden md:flex space-x-6">
-              <Link href="#" className="text-gray-600 hover:text-gray-800">Community</Link>
-              <Link href="#" className="text-gray-600 hover:text-gray-800">Sponsor Us</Link>
-              <Link href="#" className="text-gray-600 hover:text-gray-800">Pricing</Link>
-              <Link href="#" className="text-gray-600 hover:text-gray-800">Docs</Link>
-            </div>
-            <Button className="bg-white text-gray-800 hover:text-white transition-all duration-300 ease-in-out button-glow">
-              Book a call
-            </Button>
-          </div>
-        </div>
-        <div className={`absolute bottom-0 left-0 right-0 h-px bg-gray-200 transition-all duration-300 ${scrolled ? 'nav-border-animation' : ''}`}></div>
-      </nav>
 
       <section className="container mx-auto px-4 py-24 max-w-7xl relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
@@ -139,53 +110,6 @@ export function HeroSection() {
           </div>
         </div>
       </section>
-
-      <style jsx>{`
-        @keyframes subtleRays {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 0.5; transform: scale(1.05); }
-        }
-        .button-glow {
-          box-shadow: 0 0 10px rgba(218, 86, 221, 0.3), 0 0 20px rgba(86, 218, 221, 0.2), 0 0 30px rgba(255, 204, 76, 0.1);
-          transition: all 0.3s ease;
-        }
-        .button-glow:hover {
-          box-shadow: 0 0 15px rgba(218, 86, 221, 0.5), 0 0 30px rgba(86, 218, 221, 0.4), 0 0 45px rgba(255, 204, 76, 0.3);
-        }
-        .cta-button-glow::before {
-          content: '';
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: radial-gradient(
-            circle,
-            rgba(255, 183, 0, 0.2) 0%,
-            rgba(255, 166, 0, 0.1) 30%,
-            rgba(255, 140, 0, 0.05) 60%,
-            transparent 70%
-          );
-          opacity: 0;
-          transition: opacity 0.3s ease, transform 0.3s ease;
-          animation: subtleRays 4s infinite;
-          z-index: 0;
-        }
-        .cta-button-glow:hover::before {
-          opacity: 1;
-          transform: scale(1.2);
-        }
-        .nav-border-animation {
-          animation: navBorderWrap 0.3s ease-out forwards;
-        }
-        @keyframes navBorderWrap {
-          0% { left: 0; right: 0; top: auto; bottom: 0; }
-          25% { left: 0; right: 0; top: 0; bottom: 0; }
-          50% { left: 0; right: auto; top: 0; bottom: 0; }
-          75% { left: 0; right: 0; top: 0; bottom: auto; }
-          100% { left: 0; right: 0; top: 0; bottom: auto; }
-        }
-      `}</style>
     </div>
   )
 }
