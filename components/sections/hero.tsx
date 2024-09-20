@@ -16,11 +16,6 @@ export default function Hero() {
 
   return (
     <div className="min-h-screen bg-white text-gray-800 relative overflow-hidden">
-      {/* Margin lines */}
-      <div className="absolute inset-0 pointer-events-none z-10">
-        <div className="h-full mx-auto border-l border-r border-gray-300 max-w-7xl"></div>
-      </div>
-
       <section className="container mx-auto px-4 py-24 max-w-7xl relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-8">
