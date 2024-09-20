@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-100 py-8">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
             <h3 className="font-bold text-lg mb-4">Company</h3>
             <ul className="space-y-2">
@@ -19,14 +19,6 @@ export default function Footer() {
               <li><Link href="/features" className="hover:underline">Features</Link></li>
               <li><Link href="/pricing" className="hover:underline">Pricing</Link></li>
               <li><Link href="/integrations" className="hover:underline">Integrations</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-bold text-lg mb-4">Resources</h3>
-            <ul className="space-y-2">
-              <li><Link href="/blog" className="hover:underline">Blog</Link></li>
-              <li><Link href="/help" className="hover:underline">Help Center</Link></li>
-              <li><Link href="/api" className="hover:underline">API Documentation</Link></li>
             </ul>
           </div>
           <div>
