@@ -31,11 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
-        <MarginLines />
         <Navbar />
+        <MarginLines>
         <main className="flex-grow">
           {children}
-        </main>
+          </main>
+        </MarginLines>
         <Footer />
       </body>
     </html>
