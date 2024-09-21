@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 py-8">
+    <footer className="bg-zinc-100 py-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div>
@@ -30,7 +30,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-200 text-center">
+        <div className="mt-8 pt-8 border-t border-zinc-200 text-center">
           <p>&copy; {new Date().getFullYear()} Loomli. All rights reserved.</p>
         </div>
       </div>

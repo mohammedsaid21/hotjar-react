@@ -20,19 +20,19 @@ export default function Navbar() {
     <nav className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg shadow-md' : ''}`}>
       <div className="container mx-auto px-4 py-4 max-w-7xl">
         <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold text-gray-800">RecruiterAI</div>
+          <div className="text-2xl font-bold text-zinc-800">RecruiterAI</div>
           <div className="hidden md:flex space-x-6">
-            <Link href="#" className="text-gray-600 hover:text-gray-800">Community</Link>
-            <Link href="#" className="text-gray-600 hover:text-gray-800">Sponsor Us</Link>
-            <Link href="#" className="text-gray-600 hover:text-gray-800">Pricing</Link>
-            <Link href="#" className="text-gray-600 hover:text-gray-800">Docs</Link>
+            <Link href="#" className="text-zinc-600 hover:text-zinc-800">Community</Link>
+            <Link href="#" className="text-zinc-600 hover:text-zinc-800">Sponsor Us</Link>
+            <Link href="#" className="text-zinc-600 hover:text-zinc-800">Pricing</Link>
+            <Link href="#" className="text-zinc-600 hover:text-zinc-800">Docs</Link>
           </div>
-          <Button className="bg-white text-gray-800 hover:text-white transition-all duration-300 ease-in-out button-glow">
+          <Button className="bg-white text-zinc-800 hover:text-white transition-all duration-300 ease-in-out button-glow">
             Book a call
           </Button>
         </div>
       </div>
-      <div className={`absolute bottom-0 left-0 right-0 h-px bg-gray-200 transition-all duration-300 ${scrolled ? 'nav-border-animation' : ''}`}></div>
+      <div className={`absolute bottom-0 left-0 right-0 h-px bg-zinc-200 transition-all duration-300 ${scrolled ? 'nav-border-animation' : ''}`}></div>
 
       <style jsx>{`
         .button-glow {
