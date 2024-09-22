@@ -17,7 +17,6 @@ export default function AboutPage() {
         Our mission is to revolutionize the recruitment process by providing tools that enable 
         personalized, engaging candidate outreach at scale.
       </p>
-      {/* Add more content as needed */}
     </main>
   )
 }
