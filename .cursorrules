@@ -78,7 +78,10 @@ General preferences:
 - Optimize for scalability, considering potential high traffic and data transfer due to video content.
 
 
-# Current File structure
+Note:
+- The domain name is https://loom.li
+
+# Current File Structure
 START_TREE
 .
 ├── .cursorrules
@@ -93,6 +96,8 @@ START_TREE
 ├── app
 │   ├── about
 │   │   └── page.tsx
+│   ├── cookies
+│   │   └── page.tsx
 │   ├── fonts
 │   │   ├── GeistMonoVF.woff
 │   │   └── GeistVF.woff
@@ -103,7 +108,9 @@ START_TREE
 │   ├── page.tsx
 │   ├── pricing
 │   │   └── page.tsx
-│   └── privacy-policy
+│   ├── privacy-policy
+│   │   └── page.tsx
+│   └── terms
 │       └── page.tsx
 ├── components
 │   ├── sections
@@ -124,6 +131,5 @@ START_TREE
 ├── public
 │   └── fancy-color-spiral-no-wm.jpg
 ├── tailwind.config.ts
-├── tsconfig.json
 └── tsconfig.json
 END_TREE
