@@ -15,21 +15,21 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-white text-zinc-800 relative overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
       <section className="container mx-auto p-4 max-w-7xl relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-8">
-            <div className="text-2xl font-bold text-zinc-800">
+            <div className="text-2xl font-bold">
               {candidateCount} candidates Calendlyed and counting
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Recruiter! Get FANGers to click the{" "}
               <span className="bg-gradient-to-r from-pink-500 to-violet-500 text-transparent bg-clip-text">Calendly</span> link
             </h1>
-            <p className="text-xl text-zinc-600">
+            <p className="text-xl text-muted-foreground">
               Source top candidates faster. Create your clone and give us a script. We will make personalized Loom outreach of you for every candidate in your csv/Calendly/LinkedIn in minutes.
             </p>
-            <ul className="space-y-2 text-zinc-600">
+            <ul className="space-y-2 text-muted-foreground">
               {[
                 "5 minute clone process",
                 "First 1000 looms on us",
@@ -53,14 +53,14 @@ export default function Hero() {
                 </li>
               ))}
             </ul>
-            <Button className="bg-[#ffb700] text-white hover:bg-[#ffa600] transition-all duration-300 ease-in-out cta-button-glow text-lg px-8 py-3 relative overflow-hidden">
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out text-lg px-8 py-3 relative overflow-hidden">
               <span className="relative z-10">Let&apos;s Blast</span>
             </Button>
           </div>
           <div className="relative mt-8 lg:mt-0">
-            <div className="aspect-video bg-zinc-100 rounded-lg shadow-2xl overflow-hidden relative z-10">
+            <div className="aspect-video bg-muted rounded-lg shadow-2xl overflow-hidden relative z-10">
               <div className="absolute inset-0 flex items-center justify-center">
-                <Button className="bg-white text-zinc-800 hover:text-white transition-all duration-300 ease-in-out button-glow">
+                <Button variant="outline" className="bg-background text-foreground hover:text-primary-foreground transition-all duration-300 ease-in-out">
                   <svg
                     className="w-6 h-6 mr-2"
                     fill="none"
@@ -85,10 +85,10 @@ export default function Hero() {
                 </Button>
               </div>
             </div>
-            <div className="absolute bottom-[-30px] right-0 text-sm text-zinc-600 flex items-center">
+            <div className="absolute bottom-[-30px] right-0 text-sm text-muted-foreground flex items-center">
               Watch how
               <svg
-                className="w-16 h-8 ml-2 text-zinc-400"
+                className="w-16 h-8 ml-2 text-muted-foreground"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
