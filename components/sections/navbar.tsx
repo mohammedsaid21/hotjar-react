@@ -6,7 +6,6 @@ import Link from "next/link"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [initialLoad, setInitialLoad] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,15 +17,6 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  // Use a separate effect to handle initial load state
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setInitialLoad(false)
-    }, 100) // Short delay to ensure initial render is complete
-
-    return () => clearTimeout(timer)
   }, [])
 
   return (
