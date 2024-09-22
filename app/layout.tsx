@@ -32,10 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen bg-background text-foreground`}
       >
         <Navbar />
-        <MarginLines />
-        <main className="flex flex-grow max-w-7xl mx-auto px-4 py-8">
+        <MarginLines>
+          <main className="flex flex-grow max-w-7xl mx-auto px-4 py-8">
             {children}
           </main>
+        </MarginLines>
         <Footer />
       </body>
     </html>
