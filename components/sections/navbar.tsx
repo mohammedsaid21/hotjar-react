@@ -6,53 +6,47 @@ import Link from "next/link"
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [initialLoad, setInitialLoad] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
 
+    // Check initial scroll position
+    handleScroll()
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Use a separate effect to handle initial load state
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setInitialLoad(false)
+    }, 100) // Short delay to ensure initial render is complete
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <nav className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white bg-opacity-70 backdrop-filter backdrop-blur-lg shadow-md' : ''}`}>
-      <div className="container mx-auto px-4 py-4 max-w-7xl">
-        <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold text-zinc-800">RecruiterAI</div>
-          <div className="hidden md:flex space-x-6">
-            <Link href="#" className="text-zinc-600 hover:text-zinc-800">Community</Link>
-            <Link href="#" className="text-zinc-600 hover:text-zinc-800">Sponsor Us</Link>
-            <Link href="#" className="text-zinc-600 hover:text-zinc-800">Pricing</Link>
-            <Link href="#" className="text-zinc-600 hover:text-zinc-800">Docs</Link>
+    <nav className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/70 backdrop-filter backdrop-blur-lg shadow-md' : ''}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4">
+          <div className="text-2xl font-bold text-foreground pl-2">RecruiterAI</div>
+          <div className="hidden md:flex space-x-3 lg:space-x-5">
+            <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Community</Link>
+            <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Sponsor Us</Link>
+            <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Pricing</Link>
+            <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Docs</Link>
           </div>
-          <Button className="bg-white text-zinc-800 hover:text-white transition-all duration-300 ease-in-out button-glow">
+          <Button variant="outline" className="bg-background text-foreground hover:text-primary-foreground transition-all duration-300 ease-in-out mr-2">
             Book a call
           </Button>
         </div>
       </div>
-      <div className={`absolute bottom-0 left-0 right-0 h-px bg-zinc-200 transition-all duration-300 ${scrolled ? 'nav-border-animation' : ''}`}></div>
-
-      <style jsx>{`
-        .button-glow {
-          box-shadow: 0 0 10px rgba(218, 86, 221, 0.3), 0 0 20px rgba(86, 218, 221, 0.2), 0 0 30px rgba(255, 204, 76, 0.1);
-          transition: all 0.3s ease;
-        }
-        .button-glow:hover {
-          box-shadow: 0 0 15px rgba(218, 86, 221, 0.5), 0 0 30px rgba(86, 218, 221, 0.4), 0 0 45px rgba(255, 204, 76, 0.3);
-        }
-        .nav-border-animation {
-          animation: navBorderWrap 0.3s ease-out forwards;
-        }
-        @keyframes navBorderWrap {
-          0% { left: 0; right: 0; top: auto; bottom: 0; }
-          25% { left: 0; right: 0; top: 0; bottom: 0; }
-          50% { left: 0; right: auto; top: 0; bottom: 0; }
-          75% { left: 0; right: 0; top: 0; bottom: auto; }
-          100% { left: 0; right: 0; top: 0; bottom: auto; }
-        }
-      `}</style>
+      {/* Bottom border animation */}
+      <div className={`absolute bottom-0 left-0 right-0 h-px bg-zinc-300 transition-all duration-300 ${scrolled ? 'hidden' : ''}`}></div>
     </nav>
   )
 }
