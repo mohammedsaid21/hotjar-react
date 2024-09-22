@@ -42,7 +42,7 @@ export default function TermsOfService() {
 
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">8. Changes</h2>
-        <p className="mb-4">We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days' notice prior to any new terms taking effect.</p>
+        <p className="mb-4">We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days&apos; notice prior to any new terms taking effect.</p>
       </section>
 
       <section className="mb-8">

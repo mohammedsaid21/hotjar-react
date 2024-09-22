@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
       <ol className="list-none space-y-8">
         <li>
           <h2 className="text-2xl font-semibold mb-4">Introduction</h2>
-          <p className="mb-4">Welcome to Loomli's Privacy Policy. This policy describes how we collect, use, and handle your personal information when you use our services.</p>
+          <p className="mb-4">Welcome to Loomli&apos;s Privacy Policy. This policy describes how we collect, use, and handle your personal information when you use our services.</p>
         </li>
 
         <li>
