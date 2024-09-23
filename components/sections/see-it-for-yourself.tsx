@@ -21,9 +21,11 @@ const formSchema = z.object({
       message: "Invalid LinkedIn profile URL format",
     })
     .transform(val => `https://linkedin.com/in/${val}`),
-  jobPostingUrl: z.string().url({
-    message: "Please enter a valid URL",
-  }),
+  jobPostingUrl: z.string()
+    .regex(
+      /^(https?:\/\/)?([\da-z.-]+)\.([a-z]{2,63})([/\w .-]*)*\/?$/,
+      { message: "Please enter a valid URL with a TLD" }
+    ),
   email: z.string().email({
     message: "Please enter a valid email address",
   }),
@@ -37,7 +39,7 @@ export default function SeeItForYourself() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       linkedinUrl: '',
-      jobPostingUrl: 'https://',
+      jobPostingUrl: '',
       email: '',
     },
     mode: 'onBlur',
@@ -76,7 +78,7 @@ export default function SeeItForYourself() {
                         https://linkedin.com/in/
                       </span>                      
                       <Input
-                        placeholder="johndoe"
+                        placeholder="paul-graham"
                         {...field}
                         error={!!form.formState.errors.linkedinUrl}
                         className="w-full rounded-none rounded-r-md"
@@ -98,6 +100,7 @@ export default function SeeItForYourself() {
                   <FormLabel>Job Posting URL</FormLabel>
                   <FormControl>
                     <Input 
+                      placeholder="https://job-boards.greenhouse.io/notion/jobs/6089918003"
                       {...field} 
                       error={!!form.formState.errors.jobPostingUrl}
                       onFocus={() => form.clearErrors('jobPostingUrl')}
@@ -114,6 +117,7 @@ export default function SeeItForYourself() {
                   <FormLabel>Your Email Address</FormLabel>
                   <FormControl>
                     <Input 
+                      placeholder="paul.graham@notion.so"
                       {...field} 
                       error={!!form.formState.errors.email}
                       onFocus={() => form.clearErrors('email')}
