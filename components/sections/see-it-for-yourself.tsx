@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -12,6 +12,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
+  FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
@@ -34,6 +35,8 @@ const formSchema = z.object({
 export default function SeeItForYourself() {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const jobPostingUrlRef = useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -60,6 +63,30 @@ export default function SeeItForYourself() {
     }
   }
 
+  const handleLinkedinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const match = value.match(/(?:https?:\/\/)?(?:www\.)?linkedin\.com\/in\/([a-zA-Z0-9-]{5,30})\/?$/);
+    if (match) {
+      form.setValue('linkedinUrl', match[1]);
+    } else {
+      form.setValue('linkedinUrl', value);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, nextRef?: React.RefObject<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (nextRef && nextRef.current) {
+        nextRef.current.focus();
+      } else {
+        const allFieldsFilled = Object.values(form.getValues()).every(value => value !== '');
+        if (allFieldsFilled) {
+          form.handleSubmit(onSubmit)();
+        }
+      }
+    }
+  };
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -80,15 +107,18 @@ export default function SeeItForYourself() {
                       <Input
                         placeholder="paul-graham"
                         {...field}
+                        onChange={handleLinkedinInputChange}
                         error={!!form.formState.errors.linkedinUrl}
                         className="w-full rounded-none rounded-r-md"
                         onFocus={() => form.clearErrors('linkedinUrl')}
+                        onKeyDown={(e) => handleKeyDown(e, jobPostingUrlRef)}
                       />
                     </div>
                   </FormControl>
                   <FormDescription>
                     Enter your LinkedIn profile username (e.g., johndoe)
                   </FormDescription>
+                  <FormMessage>{form.formState.errors.linkedinUrl?.message}</FormMessage>
                 </FormItem>
               )}
             />
@@ -104,8 +134,11 @@ export default function SeeItForYourself() {
                       {...field} 
                       error={!!form.formState.errors.jobPostingUrl}
                       onFocus={() => form.clearErrors('jobPostingUrl')}
+                      ref={jobPostingUrlRef}
+                      onKeyDown={(e) => handleKeyDown(e, emailRef)}
                     />
                   </FormControl>
+                  <FormMessage>{form.formState.errors.jobPostingUrl?.message}</FormMessage>
                 </FormItem>
               )}
             />
@@ -121,8 +154,11 @@ export default function SeeItForYourself() {
                       {...field} 
                       error={!!form.formState.errors.email}
                       onFocus={() => form.clearErrors('email')}
+                      ref={emailRef}
+                      onKeyDown={(e) => handleKeyDown(e)}
                     />
                   </FormControl>
+                  <FormMessage>{form.formState.errors.email?.message}</FormMessage>
                 </FormItem>
               )}
             />
