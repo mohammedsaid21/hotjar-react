@@ -12,9 +12,8 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from '@/components/ui/form'
-import Input from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 
 const formSchema = z.object({
   linkedinUrl: z.string()
@@ -41,15 +40,15 @@ export default function SeeItForYourself() {
       jobPostingUrl: 'https://',
       email: '',
     },
+    mode: 'onBlur',
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
     setMessage('')
 
-    // Simulate API call to generate and send video
     try {
-      await new Promise(resolve => setTimeout(resolve, 3000)) // Simulate 3-second delay
+      await new Promise(resolve => setTimeout(resolve, 3000))
       setMessage('Success! Check your email for the personalized video.')
       console.log(values)
     } catch (error) {
@@ -72,21 +71,22 @@ export default function SeeItForYourself() {
                 <FormItem>
                   <FormLabel>LinkedIn Profile</FormLabel>
                   <FormControl>
-                    <div className="flex rounded-md shadow-sm">
-                      <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                    <div className="flex justify-stretch rounded-md shadow-sm">
+                    <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                         https://linkedin.com/in/
-                      </span>
+                      </span>                      
                       <Input
                         placeholder="johndoe"
                         {...field}
-                        className="rounded-none rounded-r-md"
+                        error={!!form.formState.errors.linkedinUrl}
+                        className="w-full rounded-none rounded-r-md"
+                        onFocus={() => form.clearErrors('linkedinUrl')}
                       />
                     </div>
                   </FormControl>
                   <FormDescription>
                     Enter your LinkedIn profile username (e.g., johndoe)
                   </FormDescription>
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -97,9 +97,12 @@ export default function SeeItForYourself() {
                 <FormItem>
                   <FormLabel>Job Posting URL</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input 
+                      {...field} 
+                      error={!!form.formState.errors.jobPostingUrl}
+                      onFocus={() => form.clearErrors('jobPostingUrl')}
+                    />
                   </FormControl>
-                  <FormMessage />
                 </FormItem>
               )}
             />
@@ -110,9 +113,12 @@ export default function SeeItForYourself() {
                 <FormItem>
                   <FormLabel>Your Email Address</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input 
+                      {...field} 
+                      error={!!form.formState.errors.email}
+                      onFocus={() => form.clearErrors('email')}
+                    />
                   </FormControl>
-                  <FormMessage />
                 </FormItem>
               )}
             />
