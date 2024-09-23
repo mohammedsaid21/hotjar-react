@@ -22,12 +22,13 @@ export default function Hero() {
             <div className="text-2xl font-bold">
               {candidateCount} candidates Calendlyed and counting
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Recruiter! Get FANGers to click the{" "}
-              <span className="bg-gradient-to-r from-pink-500 to-violet-500 text-transparent bg-clip-text">Calendly</span> link
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
+              Generate a video per candidate
             </h1>
             <p className="text-xl text-muted-foreground">
-              Source top candidates faster. Create your clone and give us a script. We will make personalized Loom outreach of you for every candidate in your csv/Calendly/LinkedIn in minutes.
+              <span className="text-secondary-foreground">Source</span> top candidates <span className="text-secondary-foreground">faster</span>.
+              Create your clone and give us a script. We will make a <span className="text-secondary-foreground">personalized </span>
+              video using your script for every candidate
             </p>
             <ul className="space-y-2 text-muted-foreground">
               {[
