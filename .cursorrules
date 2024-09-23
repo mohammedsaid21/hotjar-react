@@ -80,6 +80,7 @@ General preferences:
 
 Note:
 - The domain name is https://loom.li
+- do not use FormMessage to indicate errors. Use the Input component's error prop instead.
 
 # Current File Structure
 START_TREE

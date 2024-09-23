@@ -12,16 +12,19 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { cn } from '@/lib/utils'
 
 const formSchema = z.object({
   linkedinUrl: z.string()
-    .regex(/^[a-zA-Z0-9-]{5,30}$/, {
-      message: "Invalid LinkedIn profile URL format",
-    })
-    .transform(val => `https://linkedin.com/in/${val}`),
+    .min(1, { message: "LinkedIn URL is required" })
+    .refine(
+      (val) => /^(https?:\/\/)?(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]{5,30}\/?$/.test(val),
+      {
+        message: "Please enter a valid LinkedIn personal profile URL (e.g., linkedin.com/in/example123)",
+      }
+    ),
   jobPostingUrl: z.string()
     .regex(
       /^(https?:\/\/)?([\da-z.-]+)\.([a-z]{2,63})([/\w .-]*)*\/?$/,
@@ -32,7 +35,11 @@ const formSchema = z.object({
   }),
 })
 
-export default function SeeItForYourself() {
+interface SeeItForYourselfProps {
+  className?: string
+}
+
+export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
   const jobPostingUrlRef = useRef<HTMLInputElement>(null)
@@ -64,18 +71,6 @@ export default function SeeItForYourself() {
     }
   }
 
-  const handleLinkedinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    form.setValue('linkedinUrl', e.target.value);
-  };
-
-  const handleLinkedinInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    const match = value.match(/(?:https?:\/\/)?(?:www\.)?linkedin\.com\/in\/([a-zA-Z0-9-]{5,30})\/?$/);
-    if (match) {
-      form.setValue('linkedinUrl', match[1]);
-    }
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, nextRef?: React.RefObject<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -91,7 +86,7 @@ export default function SeeItForYourself() {
   };
 
   return (
-    <div className="rounded-lg max-w-xl mx-auto shadow-2xl overflow-hidden relative z-10 p-6">
+    <div className={cn("rounded-lg w-full mx-auto shadow-2xl overflow-hidden relative z-10 p-6", className)}>
       <h2 className="text-2xl font-bold text-center mb-6">See It For Yourself</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -100,19 +95,14 @@ export default function SeeItForYourself() {
             name="linkedinUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>LinkedIn Profile</FormLabel>
+                <FormLabel className="text-foreground">LinkedIn Profile</FormLabel>
                 <FormControl>
                   <div className="flex justify-stretch rounded-md shadow-sm">
-                    <span className="inline-flex items-center pl-3 pr-0.5 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                      https://linkedin.com/in/
-                    </span>
                     <Input
-                      placeholder="paul-graham"
+                      placeholder="https://linkedin.com/in/paul-graham"
                       {...field}
-                      onChange={handleLinkedinInputChange}
-                      onBlur={handleLinkedinInputBlur}
                       error={!!form.formState.errors.linkedinUrl}
-                      className="w-full rounded-none rounded-r-md pl-0.5"
+                      className="w-full p-3"
                       onFocus={() => form.clearErrors('linkedinUrl')}
                       onKeyDown={(e) => handleKeyDown(e, jobPostingUrlRef)}
                     />
@@ -121,7 +111,6 @@ export default function SeeItForYourself() {
                 <FormDescription>
                   Enter your LinkedIn profile username (e.g., johndoe)
                 </FormDescription>
-                <FormMessage>{form.formState.errors.linkedinUrl?.message}</FormMessage>
               </FormItem>
             )}
           />
@@ -130,7 +119,7 @@ export default function SeeItForYourself() {
             name="jobPostingUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Job Posting URL</FormLabel>
+                <FormLabel className="text-foreground">Job Posting URL</FormLabel>
                 <FormControl>
                   <Input 
                     placeholder="https://job-boards.greenhouse.io/notion/jobs/6089918003"
@@ -141,7 +130,6 @@ export default function SeeItForYourself() {
                     onKeyDown={(e) => handleKeyDown(e, emailRef)}
                   />
                 </FormControl>
-                <FormMessage>{form.formState.errors.jobPostingUrl?.message}</FormMessage>
               </FormItem>
             )}
           />
@@ -150,7 +138,7 @@ export default function SeeItForYourself() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Your Email Address</FormLabel>
+                <FormLabel className="text-foreground">Your Email Address</FormLabel>
                 <FormControl>
                   <Input 
                     placeholder="paul.graham@notion.so"
@@ -161,7 +149,6 @@ export default function SeeItForYourself() {
                     onKeyDown={(e) => handleKeyDown(e)}
                   />
                 </FormControl>
-                <FormMessage>{form.formState.errors.email?.message}</FormMessage>
               </FormItem>
             )}
           />
