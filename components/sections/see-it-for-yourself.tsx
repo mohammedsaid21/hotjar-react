@@ -57,19 +57,22 @@ export default function SeeItForYourself() {
       setMessage('Success! Check your email for the personalized video.')
       console.log(values)
     } catch (error) {
-      setMessage('An error occurred. Please try again.')
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      setMessage(`An error occurred: ${errorMessage}. Please try again.`);
     } finally {
       setIsLoading(false)
     }
   }
 
   const handleLinkedinInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    form.setValue('linkedinUrl', e.target.value);
+  };
+
+  const handleLinkedinInputBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const value = e.target.value;
     const match = value.match(/(?:https?:\/\/)?(?:www\.)?linkedin\.com\/in\/([a-zA-Z0-9-]{5,30})\/?$/);
     if (match) {
       form.setValue('linkedinUrl', match[1]);
-    } else {
-      form.setValue('linkedinUrl', value);
     }
   };
 
@@ -88,89 +91,88 @@ export default function SeeItForYourself() {
   };
 
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">See It For Yourself</h2>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-lg mx-auto space-y-6">
-            <FormField
-              control={form.control}
-              name="linkedinUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>LinkedIn Profile</FormLabel>
-                  <FormControl>
-                    <div className="flex justify-stretch rounded-md shadow-sm">
-                    <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                        https://linkedin.com/in/
-                      </span>                      
-                      <Input
-                        placeholder="paul-graham"
-                        {...field}
-                        onChange={handleLinkedinInputChange}
-                        error={!!form.formState.errors.linkedinUrl}
-                        className="w-full rounded-none rounded-r-md"
-                        onFocus={() => form.clearErrors('linkedinUrl')}
-                        onKeyDown={(e) => handleKeyDown(e, jobPostingUrlRef)}
-                      />
-                    </div>
-                  </FormControl>
-                  <FormDescription>
-                    Enter your LinkedIn profile username (e.g., johndoe)
-                  </FormDescription>
-                  <FormMessage>{form.formState.errors.linkedinUrl?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="jobPostingUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Job Posting URL</FormLabel>
-                  <FormControl>
-                    <Input 
-                      placeholder="https://job-boards.greenhouse.io/notion/jobs/6089918003"
-                      {...field} 
-                      error={!!form.formState.errors.jobPostingUrl}
-                      onFocus={() => form.clearErrors('jobPostingUrl')}
-                      ref={jobPostingUrlRef}
-                      onKeyDown={(e) => handleKeyDown(e, emailRef)}
+    <div className="rounded-lg max-w-xl mx-auto shadow-2xl overflow-hidden relative z-10 p-6">
+      <h2 className="text-2xl font-bold text-center mb-6">See It For Yourself</h2>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <FormField
+            control={form.control}
+            name="linkedinUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>LinkedIn Profile</FormLabel>
+                <FormControl>
+                  <div className="flex justify-stretch rounded-md shadow-sm">
+                    <span className="inline-flex items-center pl-3 pr-0.5 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                      https://linkedin.com/in/
+                    </span>
+                    <Input
+                      placeholder="paul-graham"
+                      {...field}
+                      onChange={handleLinkedinInputChange}
+                      onBlur={handleLinkedinInputBlur}
+                      error={!!form.formState.errors.linkedinUrl}
+                      className="w-full rounded-none rounded-r-md pl-0.5"
+                      onFocus={() => form.clearErrors('linkedinUrl')}
+                      onKeyDown={(e) => handleKeyDown(e, jobPostingUrlRef)}
                     />
-                  </FormControl>
-                  <FormMessage>{form.formState.errors.jobPostingUrl?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Your Email Address</FormLabel>
-                  <FormControl>
-                    <Input 
-                      placeholder="paul.graham@notion.so"
-                      {...field} 
-                      error={!!form.formState.errors.email}
-                      onFocus={() => form.clearErrors('email')}
-                      ref={emailRef}
-                      onKeyDown={(e) => handleKeyDown(e)}
-                    />
-                  </FormControl>
-                  <FormMessage>{form.formState.errors.email?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Generating Video...' : 'Generate Personalized Video'}
-            </Button>
-          </form>
-        </Form>
-        {message && (
-          <p className="mt-4 text-center text-sm font-medium text-green-600">{message}</p>
-        )}
-      </div>
-    </section>
+                  </div>
+                </FormControl>
+                <FormDescription>
+                  Enter your LinkedIn profile username (e.g., johndoe)
+                </FormDescription>
+                <FormMessage>{form.formState.errors.linkedinUrl?.message}</FormMessage>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="jobPostingUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Job Posting URL</FormLabel>
+                <FormControl>
+                  <Input 
+                    placeholder="https://job-boards.greenhouse.io/notion/jobs/6089918003"
+                    {...field} 
+                    error={!!form.formState.errors.jobPostingUrl}
+                    onFocus={() => form.clearErrors('jobPostingUrl')}
+                    ref={jobPostingUrlRef}
+                    onKeyDown={(e) => handleKeyDown(e, emailRef)}
+                  />
+                </FormControl>
+                <FormMessage>{form.formState.errors.jobPostingUrl?.message}</FormMessage>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Your Email Address</FormLabel>
+                <FormControl>
+                  <Input 
+                    placeholder="paul.graham@notion.so"
+                    {...field} 
+                    error={!!form.formState.errors.email}
+                    onFocus={() => form.clearErrors('email')}
+                    ref={emailRef}
+                    onKeyDown={(e) => handleKeyDown(e)}
+                  />
+                </FormControl>
+                <FormMessage>{form.formState.errors.email?.message}</FormMessage>
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? 'Generating Video...' : 'Generate Personalized Video'}
+          </Button>
+        </form>
+      </Form>
+      {message && (
+        <p className="mt-4 text-center text-sm font-medium text-green-600">{message}</p>
+      )}
+    </div>
   )
 }
