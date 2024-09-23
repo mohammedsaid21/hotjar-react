@@ -87,7 +87,7 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
 
   return (
     <div className={cn("rounded-lg w-full mx-auto shadow-2xl overflow-hidden relative z-10 p-6", className)}>
-      <h2 className="text-2xl font-bold text-center mb-6">See It For Yourself</h2>
+      <h2 className="text-2xl font-bold text-center mb-6 tracking-tight">Generate Test Video</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
