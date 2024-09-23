@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
+import SeeItForYourself from '@/components/sections/see-it-for-yourself'
 
 export default function Hero() {
   const [candidateCount, setCandidateCount] = useState(2614)
@@ -15,7 +16,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+    <div className="bg-background text-foreground relative overflow-visible">
       <section className="container mx-auto p-4 max-w-7xl relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-8">
@@ -58,52 +59,7 @@ export default function Hero() {
               <span className="relative z-10">Let&apos;s Blast</span>
             </Button>
           </div>
-          <div className="relative mt-8 lg:mt-0">
-            <div className="aspect-video bg-muted rounded-lg shadow-2xl overflow-hidden relative z-10">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Button variant="outline" className="bg-background text-foreground hover:text-primary-foreground transition-all duration-300 ease-in-out">
-                  <svg
-                    className="w-6 h-6 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  Play Demo
-                </Button>
-              </div>
-            </div>
-            <div className="absolute bottom-[-30px] right-0 text-sm text-muted-foreground flex items-center">
-              Watch how
-              <svg
-                className="w-16 h-8 ml-2 text-muted-foreground"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                />
-              </svg>
-            </div>
-          </div>
+          <SeeItForYourself className="relative mt-8 lg:mt-0"/>
         </div>
       </section>
     </div>

@@ -33,7 +33,7 @@ export default function RootLayout({
       >
         <Navbar />
         <MarginLines>
-          <main className="flex flex-grow max-w-7xl mx-auto px-4 py-8">
+          <main className="flex flex-col flex-grow max-w-7xl mx-auto px-4 py-8">
             {children}
           </main>
         </MarginLines>
