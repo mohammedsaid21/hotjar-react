@@ -14,6 +14,7 @@ import {
   FormLabel,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { cn } from '@/lib/utils'
 
 const formSchema = z.object({
@@ -33,6 +34,7 @@ const formSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address",
   }),
+  script: z.string().max(1500, { message: "Script must be 1500 characters or less" }),
 })
 
 interface SeeItForYourselfProps {
@@ -42,8 +44,10 @@ interface SeeItForYourselfProps {
 export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [isFocused, setIsFocused] = useState(false)
   const jobPostingUrlRef = useRef<HTMLInputElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
+  const scriptRef = useRef<HTMLTextAreaElement>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -51,6 +55,7 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
       linkedinUrl: '',
       jobPostingUrl: '',
       email: '',
+      script: '',
     },
     mode: 'onBlur',
   })
@@ -85,8 +90,49 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
     }
   };
 
+  const randomProfiles = [
+    'https://linkedin.com/in/robjama/',
+    'https://linkedin.com/in/velthuis/',
+    'https://linkedin.com/in/michaelnolivos/',
+    'https://linkedin.com/in/kevin-c-meyer/',
+  ]
+
+  const randomJobPostings = [
+    'https://jobs.lever.co/netflix/123456',
+    'https://careers.google.com/jobs/results/987654',
+    'https://www.apple.com/careers/us/job-12345.html',
+    'https://www.amazon.jobs/en/jobs/654321',
+  ]
+
+  const randomEmails = [
+    'john.doe@example.com',
+    'jane.smith@example.com',
+    'alex.johnson@example.com',
+    'sam.wilson@example.com',
+  ]
+
+  const fillRandomData = (field: 'linkedinUrl' | 'jobPostingUrl' | 'email') => {
+    let randomData
+    switch (field) {
+      case 'linkedinUrl':
+        randomData = randomProfiles[Math.floor(Math.random() * randomProfiles.length)]
+        break
+      case 'jobPostingUrl':
+        randomData = randomJobPostings[Math.floor(Math.random() * randomJobPostings.length)]
+        break
+      case 'email':
+        randomData = randomEmails[Math.floor(Math.random() * randomEmails.length)]
+        break
+    }
+    form.setValue(field, randomData)
+  }
+
   return (
-    <div className={cn("rounded-lg w-full mx-auto shadow-2xl overflow-hidden relative z-10 p-6", className)}>
+    <div className={cn(
+      "rounded-lg w-full mx-auto shadow-2xl overflow-hidden relative z-10 p-6",
+      isFocused && "shadow-[0_0_15px_rgba(0,0,0,0.1)]",
+      className
+    )}>
       <h2 className="text-2xl font-bold text-center mb-6 tracking-tight">Generate Test Video</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -95,7 +141,18 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
             name="linkedinUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-foreground">LinkedIn Profile</FormLabel>
+                <div className="flex justify-between items-center">
+                  <FormLabel className="text-foreground">Enter ANY LinkedIn Profile URL</FormLabel>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => fillRandomData('linkedinUrl')}
+                    className="text-xs"
+                  >
+                    Pick random profile
+                  </Button>
+                </div>
                 <FormControl>
                   <div className="flex justify-stretch rounded-md shadow-sm">
                     <Input
@@ -103,7 +160,11 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
                       {...field}
                       error={!!form.formState.errors.linkedinUrl}
                       className="w-full p-3"
-                      onFocus={() => form.clearErrors('linkedinUrl')}
+                      onFocus={() => {
+                        form.clearErrors('linkedinUrl')
+                        setIsFocused(true)
+                      }}
+                      onBlur={() => setIsFocused(false)}
                       onKeyDown={(e) => handleKeyDown(e, jobPostingUrlRef)}
                     />
                   </div>
@@ -119,13 +180,28 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
             name="jobPostingUrl"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-foreground">Job Posting URL</FormLabel>
+                <div className="flex justify-between items-center">
+                  <FormLabel className="text-foreground">Job Posting URL</FormLabel>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => fillRandomData('jobPostingUrl')}
+                    className="text-xs"
+                  >
+                    Pick random job posting
+                  </Button>
+                </div>
                 <FormControl>
                   <Input 
                     placeholder="https://job-boards.greenhouse.io/notion/jobs/6089918003"
                     {...field} 
                     error={!!form.formState.errors.jobPostingUrl}
-                    onFocus={() => form.clearErrors('jobPostingUrl')}
+                    onFocus={() => {
+                      form.clearErrors('jobPostingUrl')
+                      setIsFocused(true)
+                    }}
+                    onBlur={() => setIsFocused(false)}
                     ref={jobPostingUrlRef}
                     onKeyDown={(e) => handleKeyDown(e, emailRef)}
                   />
@@ -138,17 +214,58 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-foreground">Your Email Address</FormLabel>
+                <div className="flex justify-between items-center">
+                  <FormLabel className="text-foreground">Your Email Address</FormLabel>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => fillRandomData('email')}
+                    className="text-xs"
+                  >
+                    Use random email
+                  </Button>
+                </div>
                 <FormControl>
                   <Input 
                     placeholder="paul.graham@notion.so"
                     {...field} 
                     error={!!form.formState.errors.email}
-                    onFocus={() => form.clearErrors('email')}
+                    onFocus={() => {
+                      form.clearErrors('email')
+                      setIsFocused(true)
+                    }}
+                    onBlur={() => setIsFocused(false)}
                     ref={emailRef}
-                    onKeyDown={(e) => handleKeyDown(e)}
+                    onKeyDown={(e) => handleKeyDown(e, scriptRef)}
                   />
                 </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="script"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-foreground">Script (up to 1500 characters)</FormLabel>
+                <FormControl>
+                  <Textarea 
+                    placeholder="Enter your script here..."
+                    {...field} 
+                    error={!!form.formState.errors.script}
+                    onFocus={() => {
+                      form.clearErrors('script')
+                      setIsFocused(true)
+                    }}
+                    onBlur={() => setIsFocused(false)}
+                    ref={scriptRef}
+                    className="h-32"
+                  />
+                </FormControl>
+                <FormDescription>
+                  {1500 - (field.value?.length || 0)} characters remaining
+                </FormDescription>
               </FormItem>
             )}
           />
