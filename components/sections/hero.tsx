@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import SeeItForYourself from '@/components/ui/see-it-for-yourself'
+import SeeItForYourself from '@/components/see-it-for-yourself'
 
 export default function Hero() {
   return (

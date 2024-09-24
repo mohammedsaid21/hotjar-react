@@ -120,14 +120,26 @@ START_TREE
 │   │   ├── hero_alt_01.tsx
 │   │   ├── navbar.tsx
 │   │   └── video-demo.tsx
+│   ├── see-it-for-yourself.tsx
 │   └── ui
+│       ├── avatar.tsx
+│       ├── badge.tsx
 │       ├── button.tsx
+│       ├── calendar.tsx
+│       ├── dropdown-menu.tsx
 │       ├── form.tsx
 │       ├── input.tsx
 │       ├── label.tsx
 │       ├── margin-lines.tsx
-│       ├── see-it-for-yourself.tsx
-│       └── textarea.tsx
+│       ├── popover.tsx
+│       ├── resizable.tsx
+│       ├── scroll-area.tsx
+│       ├── select.tsx
+│       ├── separator.tsx
+│       ├── switch.tsx
+│       ├── tabs.tsx
+│       ├── textarea.tsx
+│       └── tooltip.tsx
 ├── components.json
 ├── lib
 │   └── utils.ts
