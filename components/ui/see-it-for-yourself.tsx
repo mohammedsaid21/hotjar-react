@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState, useRef, RefObject } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -76,8 +76,11 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
     }
   }
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>, nextRef?: React.RefObject<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>,
+    nextRef?: RefObject<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       if (nextRef && nextRef.current) {
         nextRef.current.focus();
