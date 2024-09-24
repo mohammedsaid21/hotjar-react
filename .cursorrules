@@ -126,7 +126,8 @@ START_TREE
 │       ├── input.tsx
 │       ├── label.tsx
 │       ├── margin-lines.tsx
-│       └── see-it-for-yourself.tsx
+│       ├── see-it-for-yourself.tsx
+│       └── textarea.tsx
 ├── components.json
 ├── lib
 │   └── utils.ts

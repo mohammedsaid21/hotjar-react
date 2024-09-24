@@ -1,20 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import SeeItForYourself from '@/components/ui/see-it-for-yourself'
 
 export default function Hero() {
-  const [candidateCount, setCandidateCount] = useState(2614)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCandidateCount(prevCount => prevCount + 1)
-    }, 30000) // Increment every 30 seconds
-
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <div className="bg-background text-foreground relative overflow-visible">
       <section className="flex flex-col items-center justify-center gap-6 container mx-auto p-4 max-w-7xl relative z-20">
