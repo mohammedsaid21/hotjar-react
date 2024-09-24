@@ -117,10 +117,16 @@ START_TREE
 │   ├── sections
 │   │   ├── footer.tsx
 │   │   ├── hero.tsx
-│   │   └── navbar.tsx
+│   │   ├── hero_alt_01.tsx
+│   │   ├── navbar.tsx
+│   │   └── video-demo.tsx
 │   └── ui
 │       ├── button.tsx
-│       └── margin-lines.tsx
+│       ├── form.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── margin-lines.tsx
+│       └── see-it-for-yourself.tsx
 ├── components.json
 ├── lib
 │   └── utils.ts
