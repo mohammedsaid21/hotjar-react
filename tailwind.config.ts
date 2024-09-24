@@ -50,7 +50,23 @@ const config: Config = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+  		keyframes: {
+  			gradient: {
+  				'0%': { backgroundPosition: '300% 50%' },
+  				'50%': { backgroundPosition: '100% 50%' },
+  				'100%': { backgroundPosition: '-100% 50%' },
+  			},
+  		},
+  		animation: {
+  			gradient: 'gradient 12s ease-in-out infinite',
+  		},
+  		backgroundImage: {
+  			'tri-gradient': 'linear-gradient(45deg, hsl(var(--loomli)), hsl(var(--li)), hsl(var(--loomli)))',
+  		},
+  		backgroundSize: {
+  			'400%': '400%',
+  		},
   	}
   },
   plugins: [require("tailwindcss-animate")],

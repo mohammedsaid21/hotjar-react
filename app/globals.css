@@ -53,6 +53,9 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --loom: 210 90% 40%;
+    --loomli: 300 68% 60%;
+    --li: 240 77% 60%;
   }
   .dark {
     --background: 240 10% 3.9%;

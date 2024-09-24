@@ -33,13 +33,13 @@ export default function Hero() {
               Source Effectively With Email, Fast⚡
             </h2>
           <p className="text-lg lg:text-xl xl:text-2xl lg:max-w-xl w-10/12 text-muted-foreground text-center mx-auto">
-            We create personalized LinkedIn profile videos of your target candidates that get candidates booking your Calendly
+            We <span className="bg-tri-gradient bg-400% animate-gradient bg-clip-text text-transparent">create</span> personalized LinkedIn profile videos of your target candidates that get candidates booking your Calendly
           </p>
           <div className="w-full max-w-2xl mx-auto my-6">
             <img
               src="https://resource2.heygen.ai/personalized_video/gif/1b5695d8de5241f59371dd369758d6f1/008ce5b362ff4de388e78bfe5c6883dd.gif"
               alt="Animated recruiter outreach"
-              className="mx-auto max-w-sm h-auto rounded-lg shadow-lg"
+              className="mx-auto max-w-xs h-auto rounded-lg shadow-lg"
             />
           </div>
         </header>
