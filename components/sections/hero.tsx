@@ -33,7 +33,7 @@ export default function Hero() {
               Source Effectively With Email, Fast⚡
             </h2>
           <p className="text-lg lg:text-xl xl:text-2xl lg:max-w-xl w-10/12 text-muted-foreground text-center mx-auto">
-            We <span className="bg-tri-gradient bg-400% animate-gradient bg-clip-text text-transparent">create</span> personalized LinkedIn profile videos of your target candidates that get candidates booking your Calendly
+            <span className="bg-tri-gradient bg-400% animate-gradient bg-clip-text text-transparent">Generate</span> personalized LinkedIn profile videos that get candidates booking your Calendly
           </p>
           <div className="w-full max-w-2xl mx-auto my-6">
             <img
