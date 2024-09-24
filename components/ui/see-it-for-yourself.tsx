@@ -98,10 +98,10 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
   ]
 
   const randomJobPostings = [
-    'https://jobs.lever.co/netflix/123456',
-    'https://careers.google.com/jobs/results/987654',
-    'https://www.apple.com/careers/us/job-12345.html',
-    'https://www.amazon.jobs/en/jobs/654321',
+    'https://www.google.com/about/careers/applications/jobs/results/80114722841469638',
+    'https://jobs.apple.com/en-ca/details/200565211',
+    'https://www.workatastartup.com/jobs/62905',
+    'https://job-boards.greenhouse.io/figma/jobs/5184792004',
   ]
 
   const randomEmails = [
