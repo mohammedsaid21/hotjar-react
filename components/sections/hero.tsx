@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import SeeItForYourself from '@/components/see-it-for-yourself'
 
 export default function Hero() {
@@ -8,22 +9,15 @@ export default function Hero() {
     <div className="bg-background text-foreground relative overflow-visible">
       <section className="flex flex-col items-center justify-center gap-6 container mx-auto p-4 max-w-7xl relative z-20">
         <header className="flex flex-col items-center gap-4 justify-center">
-          <div className="relative">
-            <span className="text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground text-center block">
-              @Sourcing Recruiters
-            </span>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tighter relative z-10">
-              Generate a <span className="text-[hsl(238,81%,60%)]">
-                Loom
-              </span> Video Per Candidate{" "}
+          <div className="flex flex-col items-center justify-center gap-2 relative">
+            <p className="py-0.5 text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground text-center"><span className=" bg-tri-gradient bg-400% animate-gradient bg-clip-text text-transparent">@Sourcing</span> Recruiters</p>
+            <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tighter relative z-10">
+              <span className="bg-tri-gradient bg-400% animate-gradient bg-clip-text text-transparent">✨</span>Generate a Video Per Candidate
             </h1>
           </div>
-          <h2 className="text-2xl lg:text-3xl xl:text-4xl tracking-tight mb-4">
-              Source Effectively With Email, Fast⚡
-            </h2>
-          <p className="text-lg lg:text-xl xl:text-2xl lg:max-w-xl w-10/12 text-muted-foreground text-center mx-auto">
-            <span className="bg-tri-gradient bg-400% animate-gradient bg-clip-text text-transparent">Generate</span> personalized LinkedIn profile videos that get candidates booking your Calendly
-          </p>
+          <h2 className="text-center text-2xl lg:text-3xl xl:text-4xl tracking-tight mb-4">
+            Sourcers leverage personalized videos to get 13% more <Link href="/calendly-integration" className="text-accent-foreground text-base text-nowrap border border-ring rounded-md px-2 py-1 relative lg:text-lg -top-1">CALENDLY BOOKINGS</Link> 32% higher <Link href="/response-rate" className="text-accent-foreground text-base text-nowrap border border-ring rounded-md px-2 py-1 relative -top-1">RESPONSE RATE</Link>
+          </h2>
           <div className="w-full max-w-2xl mx-auto my-6">
             <img
               src="https://resource2.heygen.ai/personalized_video/gif/1b5695d8de5241f59371dd369758d6f1/008ce5b362ff4de388e78bfe5c6883dd.gif"
