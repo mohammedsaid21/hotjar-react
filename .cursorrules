@@ -105,6 +105,8 @@ START_TREE
 │   ├── globals.css
 │   ├── icon.ico
 │   ├── layout.tsx
+│   ├── mail
+│   │   └── page.tsx
 │   ├── not-found.tsx
 │   ├── page.tsx
 │   ├── pricing

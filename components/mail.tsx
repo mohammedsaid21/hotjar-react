@@ -1,3 +1,10 @@
-export default function Mail() {
-  return <div>Mail</div>;
+const Mail = () => {
+  // Component implementation
+  return (
+    <div>
+
+    </div>
+  )
 }
+
+export default Mail

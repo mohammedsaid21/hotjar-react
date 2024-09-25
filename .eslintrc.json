@@ -1,3 +1,12 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:eslint-plugin-next-on-pages/recommended",
+    "plugin:react/jsx-runtime"
+  ],
+  "plugins": [
+    "eslint-plugin-next-on-pages",
+    "react/jsx-runtime"
+  ]
 }
