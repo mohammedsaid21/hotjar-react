@@ -6,9 +6,19 @@ You carefully provide accurate, factual, thoughtful answers, and are a genius at
 # Project overview
 - This repo is the front end of a SaaS that creates hyper-personalized outreach videos specifically to help headhunters source hard to get candidates
 
+  Key features include:
+
+    AI-powered video personalization
+    Integration with candidate data sources
+    Easy-to-use interface for recruiters
+
+  Current status: Early prototype
+
+
 This tool was inspired by this real recruiter outreach by Nick, a recruiter, who was creating a loom video per candidate https://www.linkedin.com/in/nickroman/ https://www.loom.com/share/b2ec90c939974afc890e537131aa412e
 
 This is an early prototype of the output https://app.heygen.com/personalized-video/share/99a2e44c5ad54eb684a0abd750997570/9e01c0f23a6e48c5b588d1e529d6f28e
+
 
 # Considerations for the front end
 1. The front end shall be a webapp that helps the user throughout their journey
@@ -37,46 +47,124 @@ This is an early prototype of the output https://app.heygen.com/personalized-vid
  Set up conversion funnels to track user journey
 
 
-Technical preferences:
+# Technical Preferences
 
-- Always use kebab-case for component names (e.g. my-component.jsx)
-- Favour using React Server Components and Next.js SSR features where possible
-- Minimize the usage of client components ('use client') to small, isolated components
-- Use shadcn/ui for UI components
-- Always add loading and error states to data fetching components
-- Implement error handling and error logging using Sentry
-- Use semantic HTML elements where possible
-- Utilize Authjs for authentication
-- Implement Stripe for payment processing
-- Use Loops.so for email services and drip campaigns
-- Implement Bull for task queues to manage video generation jobs
-- Use Cloudflare R2 for cloud storage of generated videos
-- Implement Cloudflare as the CDN for faster content delivery
-- Use Mixpanel for product analytics and user behavior tracking
-- Use Supabase for database and real-time features
-- Implement Docker for containerization
-- Use GitHub Actions for CI/CD
-- Add Segment for customer data management and integration
-- Implement Intercom for in-app support chat and user onboarding
-- Use Feature Flags (e.g., LaunchDarkly) for gradual rollouts and A/B testing
-- Implement https://clarity.microsoft.com/ for heatmaps and user session recordings
-- Add Storybook for component development and documentation
-- Use Cypress for end-to-end testing to ensure smooth user flows
-- Implement Tailwind CSS for rapid UI development and customization
+    ## Naming Conventions and Component Structure
+    - Always use kebab-case for component names (e.g., my-component.jsx)
+    - Implement a consistent folder structure for components, hooks, and utilities
 
-General preferences:
+    ## React and Next.js
+    - Favour using React Server Components and Next.js SSR features where possible
+    - Minimize the usage of client components ('use client') to small, isolated components
+    - Utilize Next.js API routes for backend functionality when appropriate
+    - Implement dynamic imports for code splitting and improved performance
 
-- Follow the user's requirements carefully & to the letter.
-- Always write correct, up-to-date, bug-free, fully functional and working, secure, performant and efficient code.
-- Focus on readability over being performant. What is clear?
-- Fully implement all requested functionality.
-- Leave NO todo's, placeholders or missing pieces in the code.
-- Be sure to reference file names.
-- Be concise. Minimize any other prose.
-- If you think there might not be a correct answer, you say so. If you do not know the answer, say so instead of guessing.
-- Ensure all implementations comply with data protection regulations like GDPR.
-- Optimize for scalability, considering potential high traffic and data transfer due to video content.
+    ## UI and Styling
+    - Use shadcn/ui for UI components
+    - Implement Tailwind CSS for rapid UI development and customization
+    - Create a consistent theme and design system
 
+    ## State Management and Data Fetching
+    - Use React's built-in useState and useContext for state management
+    - Always add loading and error states to data fetching components
+    - Implement proper error handling and error logging using Sentry
+
+    ## Authentication and Security
+    - Utilize Authjs for authentication
+    - Implement proper CSRF protection
+    - Use security headers (e.g., Content Security Policy, X-Frame-Options)
+
+    ## Payment Processing and Subscriptions
+    - Implement Stripe for payment processing
+    - Develop a robust subscription management system
+
+    ## Email and Communication
+    - Use Loops.so for email services and drip campaigns
+    - Implement a templating system for email content
+
+    ## Task Queue and Background Jobs
+    - Implement Bull for task queues to manage video generation jobs
+    - Develop a monitoring system for queue health and job status
+
+    ## Storage and Content Delivery
+    - Use Cloudflare R2 for cloud storage of generated videos
+    - Implement Cloudflare as the CDN for faster content delivery
+
+    ## Analytics and User Tracking
+    - Use Mixpanel for product analytics and user behavior tracking
+    - Implement Segment for customer data management and integration
+
+    ## Database and Real-time Features
+    - Use Supabase for database and real-time features
+    - Implement database migrations for version control of schema changes
+
+    ## DevOps and Deployment
+    - Implement Docker for containerization
+    - Use GitHub Actions for CI/CD
+    - Implement Feature Flags (e.g., LaunchDarkly) for gradual rollouts and A/B testing
+
+    ## Customer Support and Onboarding
+    - Implement Intercom for in-app support chat and user onboarding
+    - Develop a knowledge base for self-service support
+
+    ## User Experience Monitoring
+    - Implement https://clarity.microsoft.com/ for heatmaps and user session recordings
+    - For features that are not available in clarity, use https://usefathom.com/ or https://www.hotjar.com/ or https://logspot.io/ or mixpanel
+
+    ## Development Tools and Practices
+    - Add Storybook for component development and documentation
+    - Use Cypress for end-to-end testing to ensure smooth user flows
+    - Implement ESLint and Prettier for code formatting and quality
+
+    ## Performance Optimization
+    - Implement code splitting and lazy loading for improved initial load times
+    - Optimize images and assets using next/image and appropriate formats (WebP, AVIF)
+    - Utilize web workers for computationally intensive tasks
+
+    ## Accessibility
+    - Ensure WCAG 2.1 AA compliance throughout the application
+    - Use semantic HTML elements where possible
+    - Implement keyboard navigation support
+
+    ## API Design and Management
+    - Develop a RESTful API with clear versioning
+    - Implement proper rate limiting and API key management
+
+    ## Monitoring and Error Handling
+    - Implement Sentry for error logging and monitoring
+    - Create custom error boundaries for graceful error handling in the UI
+
+
+# General Development Preferences
+
+    1. Follow user requirements precisely and completely.
+
+    2. Write code that is:
+    - Correct and up-to-date
+    - Bug-free and fully functional
+    - Secure
+    - Performant and efficient
+
+    3. Prioritize code readability over performance optimizations.
+
+    4. Implement all requested functionality fully.
+
+    5. Avoid TODOs, placeholders, or incomplete code sections.
+
+    6. Always reference specific file names when discussing code.
+
+    7. Be concise in comments and documentation.
+
+    8. Express uncertainty clearly:
+    - If an answer might not be correct, state this explicitly.
+    - If you don't know an answer, say so rather than guessing.
+
+    9. Ensure all implementations comply with data protection regulations (e.g., GDPR).
+
+    10. Design for scalability, considering:
+        - Potential high traffic
+        - Large data transfer volumes due to video content
+        
 
 Note:
 - The domain name is https://loom.li
