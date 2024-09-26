@@ -59,7 +59,7 @@ Technical preferences:
 - Add Segment for customer data management and integration
 - Implement Intercom for in-app support chat and user onboarding
 - Use Feature Flags (e.g., LaunchDarkly) for gradual rollouts and A/B testing
-- Implement Hotjar for heatmaps and user session recordings
+- Implement https://clarity.microsoft.com/ for heatmaps and user session recordings
 - Add Storybook for component development and documentation
 - Use Cypress for end-to-end testing to ensure smooth user flows
 - Implement Tailwind CSS for rapid UI development and customization
