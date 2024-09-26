@@ -1,9 +1,10 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 import SeeItForYourself from '@/components/see-it-for-yourself'
+import Mail from "@/components/mail"
 
 export default function Hero() {
   return (
@@ -18,6 +19,8 @@ export default function Hero() {
         <h2 className="text-center max-w-5xl text-2xl lg:text-3xl xl:text-4xl tracking-tight mb-4">
           Recruiters leverage personalized videos to get <span className="text-nowrap">13% more <Link href="/calendly-integration" className="text-accent-foreground text-base text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative lg:text-lg -top-1">CALENDLY BOOKINGS</Link></span> <span className="text-nowrap">32% higher <Link href="/response-rate" className="text-accent-foreground text-base lg:text-lg text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative -top-1">RESPONSE RATE</Link></span>
         </h2>
+        <Mail />
+
         <Image
           src="https://resource2.heygen.ai/personalized_video/gif/1b5695d8de5241f59371dd369758d6f1/008ce5b362ff4de388e78bfe5c6883dd.gif"
           alt="Animated recruiter outreach"
