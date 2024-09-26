@@ -137,7 +137,7 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
       className
     )}>
       <div className="bg-primary -mx-6 -mt-4 px-6 pt-4 pb-3 mb-4">
-        <h1 className="text-primary-foreground text-lg text-center mb-2 tracking-tight">Give us a candidate LinkedIn profile, a job posting, and a script. We will generate a personalized video for you and send it to your inbox.</h1>
+        <h1 className="text-primary-foreground text-lg text-center mb-2 tracking-tight">Demo in 30 seconds. Give us a any LinkedIn profile, any job posting, and a script. We will generate a sample video for you and send it to your inbox.</h1>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
