@@ -132,11 +132,13 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
 
   return (
     <div className={cn(
-      "rounded-lg w-full mx-auto shadow-2xl overflow-hidden relative z-10 p-6",
+      "rounded-lg w-full mx-auto my-6 shadow-2xl overflow-hidden relative z-10 px-6 py-4",
       isFocused && "shadow-[0_0_15px_rgba(0,0,0,0.1)]",
       className
     )}>
-      <h2 className="text-2xl font-bold text-center mb-6 tracking-tight">Generate Test Video</h2>
+      <div className="bg-primary -mx-6 -mt-4 px-6 pt-4 pb-3 mb-4">
+        <h1 className="text-primary-foreground text-lg text-center mb-2 tracking-tight">Give us a candidate LinkedIn profile, a job posting, and a script. We will generate a personalized video for you and send it to your inbox.</h1>
+      </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
