@@ -6,7 +6,6 @@
     "plugin:react/jsx-runtime"
   ],
   "plugins": [
-    "eslint-plugin-next-on-pages",
-    "react/jsx-runtime"
+    "eslint-plugin-next-on-pages"
   ]
 }

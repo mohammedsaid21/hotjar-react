@@ -116,6 +116,8 @@ START_TREE
 │   └── terms
 │       └── page.tsx
 ├── components
+│   ├── mail-data.tsx
+│   ├── mail.tsx
 │   ├── sections
 │   │   ├── footer.tsx
 │   │   ├── hero.tsx
@@ -143,6 +145,7 @@ START_TREE
 │       ├── textarea.tsx
 │       └── tooltip.tsx
 ├── components.json
+├── eslint.config.mjs
 ├── lib
 │   └── utils.ts
 ├── next-env.d.ts
