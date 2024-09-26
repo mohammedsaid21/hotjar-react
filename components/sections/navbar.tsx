@@ -23,14 +23,15 @@ export default function Navbar() {
     <nav className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/70 backdrop-filter backdrop-blur-lg shadow-md' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center p-4">
-          <div className="text-2xl font-bold text-foreground pl-2">RecruiterAI</div>
+          <Link href="/">
+            <div className="text-2xl font-bold text-accent-foreground pl-2">loomli</div>
+          </Link>
           <div className="hidden md:flex space-x-3 lg:space-x-5">
             <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Community</Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Sponsor Us</Link>
             <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Pricing</Link>
             <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Docs</Link>
           </div>
-          <Button variant="outline" className="bg-background text-foreground hover:text-primary-foreground transition-all duration-300 ease-in-out mr-2">
+          <Button variant="outline" className="bg-background text-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 ease-in-out mr-2">
             Book a call
           </Button>
         </div>
