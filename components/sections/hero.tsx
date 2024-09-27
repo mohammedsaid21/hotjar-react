@@ -32,7 +32,7 @@ export default function Hero() {
           </h1>
         </div>
         <h2 className="text-center max-w-5xl text-2xl lg:text-3xl xl:text-4xl tracking-tight mb-4">
-          Recruiters leverage personalized videos to get <span className="text-nowrap">13% more <Link href="/calendly-integration" className="text-accent-foreground text-base text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative lg:text-lg -top-1">CALENDLY BOOKINGS</Link></span> <span className="text-nowrap">32% higher <Link href="/response-rate" className="text-accent-foreground text-base lg:text-lg text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative -top-1">RESPONSE RATE</Link></span>
+          Recruiters leverage personalized videos to get <span className="text-nowrap">13% more <Link href="/calendly-integration" tabIndex={-1} className="text-accent-foreground text-base text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative lg:text-lg -top-1">CALENDLY BOOKINGS</Link></span> <span className="text-nowrap">32% higher <Link href="/response-rate" tabIndex={-1} className="text-accent-foreground text-base lg:text-lg text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative -top-1">RESPONSE RATE</Link></span>
         </h2>
         <div className="relative w-full max-w-2xl mx-auto">
           {!videoLoaded && (
