@@ -37,7 +37,7 @@ export default function Hero() {
         <div className="relative w-full max-w-2xl mx-auto">
           {!videoLoaded && (
             <Image
-              src="https://resource2.heygen.ai/personalized_video/gif/1b5695d8de5241f59371dd369758d6f1/008ce5b362ff4de388e78bfe5c6883dd.gif"
+              src="/prince.gif"
               alt="Animated recruiter outreach"
               width={560}
               height={315}
