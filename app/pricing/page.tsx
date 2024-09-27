@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { useEffect } from 'react'
 
 export const metadata: Metadata = {
   title: 'Pricing | Loomli',
@@ -6,6 +7,12 @@ export const metadata: Metadata = {
 }
 
 export default function PricingPage() {
+  useEffect(() => {
+    if (typeof window !== 'undefined' && (window as any).clarity) {
+      (window as any).clarity('set', 'pricing_page_view', 'true');
+    }
+  }, []);
+
   return (
     <main className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-6">Pricing Plans</h1>
