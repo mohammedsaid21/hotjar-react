@@ -137,23 +137,24 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
       className
     )}>
       <div className="bg-primary -mx-6 -mt-4 px-6 pt-4 pb-3 mb-4">
-        <h1 className="text-primary-foreground text-lg text-center mb-2 tracking-tight">Demo in 30 seconds. Give us a any LinkedIn profile, any job posting, and a script. We will generate a sample video for you and send it to your inbox.</h1>
+        <h1 className="text-primary-foreground text-lg text-center mb-2 tracking-tight"><strong>See it in action</strong>. Give us any LinkedIn profile, any job posting, and a script. We will generate a sample video for you and send it to your inbox.</h1>
       </div>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
             control={form.control}
             name="linkedinUrl"
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <FormItem>
                 <div className="flex justify-between items-center">
-                  <FormLabel className="text-foreground">Enter ANY LinkedIn Profile URL</FormLabel>
+                  <FormLabel className="text-foreground">Enter any LinkedIn Profile</FormLabel>
                   <Button
                     type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => fillRandomData('linkedinUrl')}
                     className="text-xs"
+                    tabIndex={-1}
                   >
                     Pick random profile
                   </Button>
@@ -163,50 +164,48 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
                     <Input
                       placeholder="https://linkedin.com/in/paul-graham"
                       {...field}
-                      error={!!form.formState.errors.linkedinUrl}
+                      error={!!fieldState.error}
                       className="w-full p-3"
-                      onFocus={() => {
-                        form.clearErrors('linkedinUrl')
-                        setIsFocused(true)
+                      onFocus={() => setIsFocused(true)}
+                      onBlur={() => {
+                        setIsFocused(false)
+                        field.onBlur()
                       }}
-                      onBlur={() => setIsFocused(false)}
                       onKeyDown={(e) => handleKeyDown(e, jobPostingUrlRef)}
                     />
                   </div>
                 </FormControl>
-                <FormDescription>
-                  Enter your LinkedIn profile username (e.g., johndoe)
-                </FormDescription>
               </FormItem>
             )}
           />
           <FormField
             control={form.control}
             name="jobPostingUrl"
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <FormItem>
                 <div className="flex justify-between items-center">
-                  <FormLabel className="text-foreground">Job Posting URL</FormLabel>
+                  <FormLabel className="text-foreground">Enter a Job Posting</FormLabel>
                   <Button
                     type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => fillRandomData('jobPostingUrl')}
                     className="text-xs"
+                    tabIndex={-1}
                   >
                     Pick random job posting
                   </Button>
                 </div>
                 <FormControl>
-                  <Input 
+                  <Input
                     placeholder="https://job-boards.greenhouse.io/notion/jobs/6089918003"
                     {...field} 
-                    error={!!form.formState.errors.jobPostingUrl}
-                    onFocus={() => {
-                      form.clearErrors('jobPostingUrl')
-                      setIsFocused(true)
+                    error={!!fieldState.error}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => {
+                      setIsFocused(false)
+                      field.onBlur()
                     }}
-                    onBlur={() => setIsFocused(false)}
                     ref={jobPostingUrlRef}
                     onKeyDown={(e) => handleKeyDown(e, emailRef)}
                   />
@@ -216,61 +215,55 @@ export default function SeeItForYourself({ className }: SeeItForYourselfProps) {
           />
           <FormField
             control={form.control}
-            name="email"
-            render={({ field }) => (
+            name="script"
+            render={({ field, fieldState }) => (
               <FormItem>
-                <div className="flex justify-between items-center">
-                  <FormLabel className="text-foreground">Your Email Address</FormLabel>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => fillRandomData('email')}
-                    className="text-xs"
-                  >
-                    Use random email
-                  </Button>
-                </div>
+                <FormLabel className="text-foreground">Script (up to 1500 characters)</FormLabel>
                 <FormControl>
-                  <Input 
-                    placeholder="paul.graham@notion.so"
+                  <Textarea
+                    placeholder="Enter your script here..."
                     {...field} 
-                    error={!!form.formState.errors.email}
-                    onFocus={() => {
-                      form.clearErrors('email')
-                      setIsFocused(true)
+                    error={!!fieldState.error}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => {
+                      setIsFocused(false)
+                      field.onBlur()
                     }}
-                    onBlur={() => setIsFocused(false)}
-                    ref={emailRef}
-                    onKeyDown={(e) => handleKeyDown(e, scriptRef)}
+                    ref={scriptRef}
+                    className="h-32"
                   />
                 </FormControl>
+                {fieldState.error && (
+                  <p className="text-sm text-red-500 mt-1">{fieldState.error.message}</p>
+                )}
+                <FormDescription>
+                  {1500 - (field.value?.length || 0)} characters remaining
+                </FormDescription>
               </FormItem>
             )}
           />
           <FormField
             control={form.control}
-            name="script"
-            render={({ field }) => (
+            name="email"
+            render={({ field, fieldState }) => (
               <FormItem>
-                <FormLabel className="text-foreground">Script (up to 1500 characters)</FormLabel>
+                <div className="flex justify-between items-center">
+                  <FormLabel className="text-foreground">Address to send video</FormLabel>
+                </div>
                 <FormControl>
-                  <Textarea 
-                    placeholder="Enter your script here..."
+                  <Input
+                    placeholder="paul.graham@notion.so"
                     {...field} 
-                    error={!!form.formState.errors.script}
-                    onFocus={() => {
-                      form.clearErrors('script')
-                      setIsFocused(true)
+                    error={!!fieldState.error}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => {
+                      setIsFocused(false)
+                      field.onBlur()
                     }}
-                    onBlur={() => setIsFocused(false)}
-                    ref={scriptRef}
-                    className="h-32"
+                    ref={emailRef}
+                    onKeyDown={(e) => handleKeyDown(e, scriptRef)}
                   />
                 </FormControl>
-                <FormDescription>
-                  {1500 - (field.value?.length || 0)} characters remaining
-                </FormDescription>
               </FormItem>
             )}
           />
