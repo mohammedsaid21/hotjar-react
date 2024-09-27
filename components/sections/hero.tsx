@@ -1,11 +1,27 @@
 'use client'
 
+import { useState } from 'react'
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import SeeItForYourself from '@/components/see-it-for-yourself'
+import { useRef } from 'react'
 
 export default function Hero() {
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const handleImageClick = () => {
+    setVideoLoaded(true)
+    // Use setTimeout to ensure the video element is in the DOM
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.volume = 1 // Set volume to maximum
+        videoRef.current.play()
+      }
+    }, 0)
+  }
+
   return (
     <section className="bg-background text-foreground relative overflow-visible flex flex-col items-center justify-center gap-10 container mx-auto p-4 max-w-7xl z-20">
       <header className="flex flex-col items-center gap-4 justify-center">
@@ -18,14 +34,32 @@ export default function Hero() {
         <h2 className="text-center max-w-5xl text-2xl lg:text-3xl xl:text-4xl tracking-tight mb-4">
           Recruiters leverage personalized videos to get <span className="text-nowrap">13% more <Link href="/calendly-integration" className="text-accent-foreground text-base text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative lg:text-lg -top-1">CALENDLY BOOKINGS</Link></span> <span className="text-nowrap">32% higher <Link href="/response-rate" className="text-accent-foreground text-base lg:text-lg text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative -top-1">RESPONSE RATE</Link></span>
         </h2>
-        <Image
-          src="https://resource2.heygen.ai/personalized_video/gif/1b5695d8de5241f59371dd369758d6f1/008ce5b362ff4de388e78bfe5c6883dd.gif"
-          alt="Animated recruiter outreach"
-          width={320}
-          height={240}
-          className="w-full max-w-2xl mx-auto max-w-xs h-auto rounded-lg shadow-lg"
-          priority
-        />
+        <div className="relative w-full max-w-2xl mx-auto">
+          {!videoLoaded && (
+            <Image
+              src="https://resource2.heygen.ai/personalized_video/gif/1b5695d8de5241f59371dd369758d6f1/008ce5b362ff4de388e78bfe5c6883dd.gif"
+              alt="Animated recruiter outreach"
+              width={560}
+              height={315}
+              className="w-full h-auto rounded-lg shadow-lg cursor-pointer"
+              priority
+              onClick={handleImageClick}
+            />
+          )}
+          {videoLoaded && (
+            <video
+              ref={videoRef}
+              width="560"
+              height="315"
+              controls
+              title="Example Candidate Outreach"
+              className="w-full h-auto rounded-lg shadow-lg"
+            >
+              <source src="/example_video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          )}
+        </div>
       </header>
       <SeeItForYourself className="relative mt-8 max-w-2xl lg:mt-0"/>
       <ul className="space-y-2 text-muted-foreground">
