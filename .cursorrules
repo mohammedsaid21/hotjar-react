@@ -14,38 +14,35 @@ You carefully provide accurate, factual, thoughtful answers, and are a genius at
 
   Current status: Early prototype
 
-
 This tool was inspired by this real recruiter outreach by Nick, a recruiter, who was creating a loom video per candidate https://www.linkedin.com/in/nickroman/ https://www.loom.com/share/b2ec90c939974afc890e537131aa412e
 
 This is an early prototype of the output https://app.heygen.com/personalized-video/share/99a2e44c5ad54eb684a0abd750997570/9e01c0f23a6e48c5b588d1e529d6f28e
 
-
 # Considerations for the front end
 1. The front end shall be a webapp that helps the user throughout their journey
-1. The front end design should keep the following users in mind:
- 1. First-time visitor: Exploring the tool's features and benefits
- 1. Returning visitor: Considering signing up after initial research
- 1. Free trial user: Testing the tool's capabilities before committing
- 1. New paid user: Learning to navigate and use the platform effectively
- 1. Power user: Utilizing advanced features and integrations regularly
- 1. Admin user: Managing team accounts and permissions
- 1. Occasional user: Accessing the tool for specific recruitment campaigns
- 1. Upgrade prospect: Evaluating higher-tier plans for more features
- 1. Support seeker: Looking for help documentation or customer service
- 1. Referral visitor: Checking out the tool based on a colleague's recommendation
-1. Ensure responsive design
- Optimize layout for mobile, tablet, and desktop
- Test on various devices and browsers
- Implement lazy loading for images and videos
-1. Add subtle microinteractions
- Hover effects on buttons and links
- Loading animations for any async actions
- Smooth scroll to sections when navigation links are clicked
-1. Implement analytics tracking
- Set up event tracking for key user actions (e.g., video play, CTA clicks)
- Create heat maps for user engagement analysis
- Set up conversion funnels to track user journey
-
+2. The front end design should keep the following users in mind:
+   1. First-time visitor: Exploring the tool's features and benefits
+   2. Returning visitor: Considering signing up after initial research
+   3. Free trial user: Testing the tool's capabilities before committing
+   4. New paid user: Learning to navigate and use the platform effectively
+   5. Power user: Utilizing advanced features and integrations regularly
+   6. Admin user: Managing team accounts and permissions
+   7. Occasional user: Accessing the tool for specific recruitment campaigns
+   8. Upgrade prospect: Evaluating higher-tier plans for more features
+   9. Support seeker: Looking for help documentation or customer service
+   10. Referral visitor: Checking out the tool based on a colleague's recommendation
+3. Ensure responsive design
+   Optimize layout for mobile, tablet, and desktop
+   Test on various devices and browsers
+   Implement lazy loading for images and videos
+4. Add subtle microinteractions
+   Hover effects on buttons and links
+   Loading animations for any async actions
+   Smooth scroll to sections when navigation links are clicked
+5. Implement analytics tracking
+   Set up event tracking for key user actions (e.g., video play, CTA clicks)
+   Create heat maps for user engagement analysis
+   Set up conversion funnels to track user journey
 
 # Technical Preferences
 
@@ -134,7 +131,6 @@ This is an early prototype of the output https://app.heygen.com/personalized-vid
     - Implement Sentry for error logging and monitoring
     - Create custom error boundaries for graceful error handling in the UI
 
-
 # General Development Preferences
 
     1. Follow user requirements precisely and completely.
@@ -164,7 +160,11 @@ This is an early prototype of the output https://app.heygen.com/personalized-vid
     10. Design for scalability, considering:
         - Potential high traffic
         - Large data transfer volumes due to video content
-        
+
+    11. Never add white space errors.
+
+    12. Do not add comments like: `// Removed mt-4`, `// Added className="p-4"` etc.
+        Just make the changes and move on.
 
 Note:
 - The domain name is https://loom.li
@@ -177,84 +177,85 @@ START_TREE
 ├── .eslintrc.json
 ├── .gitignore
 ├── .vscode
-│   └── settings.json
+│   └── settings.json
 ├── Design Docs
-│   ├── front-end.md
-│   └── honest pricing page.png
+│   ├── front-end.md
+│   └── honest pricing page.png
 ├── README.md
 ├── app
-│   ├── about
-│   │   └── page.tsx
-│   ├── cookies
-│   │   └── page.tsx
-│   ├── fonts
-│   │   ├── GeistMonoVF.woff
-│   │   └── GeistVF.woff
-│   ├── globals.css
-│   ├── icon.ico
-│   ├── layout.tsx
-│   ├── mail
-│   │   └── page.tsx
-│   ├── not-found.tsx
-│   ├── page.tsx
-│   ├── pricing
-│   │   └── page.tsx
-│   ├── privacy-policy
-│   │   └── page.tsx
-│   └── terms
-│       └── page.tsx
+│   ├── about
+│   │   └── page.tsx
+│   ├── cookies
+│   │   └── page.tsx
+│   ├── fonts
+│   │   ├── GeistMonoVF.woff
+│   │   └── GeistVF.woff
+│   ├── globals.css
+│   ├── icon.ico
+│   ├── layout.tsx
+│   ├── mail
+│   │   └── page.tsx
+│   ├── not-found.tsx
+│   ├── page.tsx
+│   ├── pricing
+│   │   └── page.tsx
+│   ├── privacy-policy
+│   │   └── page.tsx
+│   └── terms
+│       └── page.tsx
 ├── components
-│   ├── ClarityTracking.tsx
-│   ├── gtm.tsx
-│   ├── mail
-│   │   ├── account-switcher.tsx
-│   │   ├── data.tsx
-│   │   ├── mail-data.tsx
-│   │   ├── mail-display.tsx
-│   │   ├── mail-list.tsx
-│   │   ├── mail.tsx
-│   │   ├── nav.tsx
-│   │   └── use-mail.ts
-│   ├── mail.tsx
-│   ├── sections
-│   │   ├── footer.tsx
-│   │   ├── hero.tsx
-│   │   ├── hero_alt_01.tsx
-│   │   ├── navbar.tsx
-│   │   └── video-demo.tsx
-│   ├── see-it-for-yourself.tsx
-│   └── ui
-│       ├── avatar.tsx
-│       ├── badge.tsx
-│       ├── button.tsx
-│       ├── calendar.tsx
-│       ├── dropdown-menu.tsx
-│       ├── form.tsx
-│       ├── input.tsx
-│       ├── label.tsx
-│       ├── margin-lines.tsx
-│       ├── popover.tsx
-│       ├── resizable.tsx
-│       ├── scroll-area.tsx
-│       ├── select.tsx
-│       ├── separator.tsx
-│       ├── switch.tsx
-│       ├── tabs.tsx
-│       ├── textarea.tsx
-│       └── tooltip.tsx
+│   ├── ClarityTracking.tsx
+│   ├── gtm.tsx
+│   ├── mail
+│   │   ├── account-switcher.tsx
+│   │   ├── data.tsx
+│   │   ├── mail-data.tsx
+│   │   ├── mail-display.tsx
+│   │   ├── mail-list.tsx
+│   │   ├── mail.tsx
+│   │   ├── nav.tsx
+│   │   └── use-mail.ts
+│   ├── mail.tsx
+│   ├── sections
+│   │   ├── footer.tsx
+│   │   ├── hero.tsx
+│   │   ├── hero_alt_01.tsx
+│   │   ├── navbar.tsx
+│   │   └── video-demo.tsx
+│   ├── see-it-for-yourself.tsx
+│   └── ui
+│       ├── avatar.tsx
+│       ├── badge.tsx
+│       ├── button.tsx
+│       ├── calendar.tsx
+│       ├── dropdown-menu.tsx
+│       ├── form.tsx
+│       ├── input.tsx
+│       ├── label.tsx
+│       ├── margin-lines.tsx
+│       ├── popover.tsx
+│       ├── resizable.tsx
+│       ├── scroll-area.tsx
+│       ├── select.tsx
+│       ├── separator.tsx
+│       ├── switch.tsx
+│       ├── tabs.tsx
+│       ├── textarea.tsx
+│       └── tooltip.tsx
 ├── components.json
 ├── eslint.config.mjs
 ├── lib
-│   └── utils.ts
+│   └── utils.ts
 ├── next-env.d.ts
 ├── next.config.mjs
 ├── package-lock.json
 ├── package.json
 ├── postcss.config.mjs
 ├── public
-│   ├── example_video.mp4
-│   ├── fancy-color-spiral-no-wm.jpg
-│   └── prince.gif
+│   ├── example_video.mp4
+│   ├── logo-tiny.png
+│   ├── fancy-color-spiral-no-wm.jpg
+│   └── prince.gif
 ├── tailwind.config.ts
 └── tsconfig.json
 END_TREE
