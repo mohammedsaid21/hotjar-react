@@ -204,7 +204,17 @@ START_TREE
 │   └── terms
 │       └── page.tsx
 ├── components
-│   ├── mail-data.tsx
+│   ├── ClarityTracking.tsx
+│   ├── gtm.tsx
+│   ├── mail
+│   │   ├── account-switcher.tsx
+│   │   ├── data.tsx
+│   │   ├── mail-data.tsx
+│   │   ├── mail-display.tsx
+│   │   ├── mail-list.tsx
+│   │   ├── mail.tsx
+│   │   ├── nav.tsx
+│   │   └── use-mail.ts
 │   ├── mail.tsx
 │   ├── sections
 │   │   ├── footer.tsx
@@ -242,7 +252,9 @@ START_TREE
 ├── package.json
 ├── postcss.config.mjs
 ├── public
-│   └── fancy-color-spiral-no-wm.jpg
+│   ├── example_video.mp4
+│   ├── fancy-color-spiral-no-wm.jpg
+│   └── prince.gif
 ├── tailwind.config.ts
 └── tsconfig.json
 END_TREE
