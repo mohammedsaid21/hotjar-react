@@ -19,6 +19,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const handleCommunityClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    window.open('https://discord.gg/wNawfptZrZ', '_blank')
+  }
+
   return (
     <nav className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-background/70 backdrop-filter backdrop-blur-lg shadow-md' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,9 +32,15 @@ export default function Navbar() {
             <div className="text-2xl font-bold text-accent-foreground pl-2">loomli</div>
           </Link>
           <div className="hidden md:flex space-x-3 lg:space-x-5">
-            <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Community</Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Pricing</Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground px-1">Docs</Link>
+            <Link
+              href="/community"
+              className="text-muted-foreground hover:text-foreground px-1"
+              onClick={handleCommunityClick}
+            >
+              Discord Community
+            </Link>
+            <Link href="/pricing" className="text-muted-foreground hover:text-foreground px-1">Pricing</Link>
+            <Link href="/docs" className="text-muted-foreground hover:text-foreground px-1">Docs</Link>
           </div>
           <Button variant="outline" className="bg-background text-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 ease-in-out mr-2">
             Book a call
