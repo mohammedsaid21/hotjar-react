@@ -26,13 +26,13 @@ export default function Hero() {
     <section className="bg-background text-foreground relative overflow-visible flex flex-col items-center justify-center gap-10 container mx-auto p-4 max-w-7xl z-20">
       <header className="flex flex-col items-center gap-4 justify-center">
         <div className="flex flex-col items-center justify-center gap-2 relative">
-          <p className="py-0.5 text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground text-center">@Sourcing Recruiters</p>
+          <p className="py-0.5 text-lg md:text-xl lg:text-2xl font-bold text-muted-foreground text-center">@Outbound Recruiters</p>
           <h1 className="text-center text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tighter relative z-10">
             <span className="bg-tri-gradient bg-400% animate-gradient bg-clip-text text-transparent">✨</span>Generate a Video Per Candidate
           </h1>
         </div>
         <h2 className="text-center max-w-5xl text-2xl lg:text-3xl xl:text-4xl tracking-tight mb-4">
-          Recruiters leverage personalized videos to get <span className="text-nowrap">13% more <Link href="/calendly-integration" tabIndex={-1} className="text-accent-foreground text-base text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative lg:text-lg -top-1">CALENDLY BOOKINGS</Link></span> <span className="text-nowrap">32% higher <Link href="/response-rate" tabIndex={-1} className="text-accent-foreground text-base lg:text-lg text-nowrap border border-accent-foreground rounded-md px-2 py-1 relative -top-1">RESPONSE RATE</Link></span>
+          Recruiters leverage personalized videos to get <span className="text-nowrap">13% more <Link href="/calendly-integration" tabIndex={-1} className="text-secondary-foreground text-base text-nowrap border border-secondary-foreground rounded-md px-2 py-1 relative lg:text-lg -top-1">CALENDLY BOOKINGS</Link></span> <span className="text-nowrap">32% higher <Link href="/response-rate" tabIndex={-1} className="text-secondary-foreground text-base lg:text-lg text-nowrap border border-secondary-foreground rounded-md px-2 py-1 relative -top-1">RESPONSE RATE</Link></span>
         </h2>
         <div className="relative w-full max-w-2xl mx-auto">
           {!videoLoaded && (
