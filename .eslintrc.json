@@ -3,9 +3,14 @@
     "next/core-web-vitals",
     "next/typescript",
     "plugin:eslint-plugin-next-on-pages/recommended",
-    "plugin:react/jsx-runtime"
+    "plugin:react/jsx-runtime",
+    "plugin:tailwindcss/recommended"
   ],
   "plugins": [
-    "eslint-plugin-next-on-pages"
-  ]
+    "eslint-plugin-next-on-pages",
+    "tailwindcss"
+  ],
+  "rules": {
+    "tailwindcss/no-custom-classname": "off"
+  }
 }
