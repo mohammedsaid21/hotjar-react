@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/sections/navbar";
 import Footer from "@/components/sections/footer";
 import MarginLines from "@/components/ui/margin-lines";
-import Script from 'next/script';
+import Script from "next/script";
 import GTM from "@/components/gtm";
 
 const geistSans = localFont({
@@ -20,7 +20,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "personalized candidate videos",
-  description: "loomli books more candidates by generating videos of you speaking to each candidate's LinkedIn profile",
+  description:
+    "loomli books more candidates by generating videos of you speaking to each candidate's LinkedIn profile",
 };
 
 export default function RootLayout({
@@ -34,12 +35,12 @@ export default function RootLayout({
         <GTM />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-full bg-background text-foreground overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} flex min-h-full flex-col overflow-x-hidden bg-background text-foreground antialiased`}
       >
         <Navbar />
-        <div className="flex flex-col flex-grow">
+        <div className="flex grow flex-col">
           <MarginLines>
-            <main className="flex-grow">{children}</main>
+            <main className="grow">{children}</main>
           </MarginLines>
         </div>
         <Footer />
@@ -53,7 +54,6 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "o9o1c4jahg");
           `}
         </Script>
-
       </body>
     </html>
   );

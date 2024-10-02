@@ -60,6 +60,12 @@ This is an early prototype of the output https://app.heygen.com/personalized-vid
     - Use shadcn/ui for UI components
     - Implement Tailwind CSS for rapid UI development and customization
     - Create a consistent theme and design system
+    - Ensure Tailwind CSS classnames are ordered correctly
+     - tailwindcss/classnames-order: "error"
+    - Use shorthand classes where applicable. For example instead of writing `h-4 w-4` write `size-4`
+     - tailwindcss/enforces-shorthand: "error"
+    - Update deprecated classnames from Tailwind CSS v2 to v3. For example instead of `flex-grow` write `grow`
+     - tailwindcss/migration-from-tailwind-2: "error"
 
     ## State Management and Data Fetching
     - Use React's built-in useState and useContext for state management
@@ -173,6 +179,7 @@ Note:
 # Current File Structure
 START_TREE
 .
+├── .cursorignore
 ├── .cursorrules
 ├── .eslintrc.json
 ├── .gitignore
@@ -184,6 +191,8 @@ START_TREE
 ├── README.md
 ├── app
 │   ├── about
+│   │   └── page.tsx
+│   ├── community
 │   │   └── page.tsx
 │   ├── cookies
 │   │   └── page.tsx
@@ -219,7 +228,6 @@ START_TREE
 │   ├── sections
 │   │   ├── footer.tsx
 │   │   ├── hero.tsx
-│   │   ├── hero_alt_01.tsx
 │   │   ├── navbar.tsx
 │   │   └── video-demo.tsx
 │   ├── see-it-for-yourself.tsx
@@ -252,10 +260,13 @@ START_TREE
 ├── package.json
 ├── postcss.config.mjs
 ├── public
-│   ├── example_video.mp4
-│   ├── logo-tiny.png
+│   ├── Your Title Here.svg
 │   ├── fancy-color-spiral-no-wm.jpg
-│   └── prince.gif
+│   ├── give it a go hand drawn text.svg
+│   ├── hand arrow right.svg
+│   ├── logo-tiny.png
+│   ├── prince.gif
+│   └── tiny.webm
 ├── tailwind.config.ts
 └── tsconfig.json
 END_TREE

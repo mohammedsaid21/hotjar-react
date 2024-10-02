@@ -1,14 +1,17 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function VideoDemo() {
   return (
-    <section className="container mx-auto p-4 max-w-7xl relative z-20 mt-16">
-      <h2 className="text-3xl font-bold mb-8 text-center">See How It Works</h2>
-      <div className="aspect-video bg-muted rounded-lg shadow-2xl overflow-hidden relative z-10 max-w-4xl mx-auto">
+    <section className="container relative z-20 mx-auto mt-16 max-w-7xl p-4">
+      <h2 className="mb-8 text-center text-3xl font-bold">See How It Works</h2>
+      <div className="relative z-10 mx-auto aspect-video max-w-4xl overflow-hidden rounded-lg bg-muted shadow-2xl">
         <div className="absolute inset-0 flex items-center justify-center">
-          <Button variant="outline" className="bg-background text-foreground hover:text-primary-foreground transition-all duration-300 ease-in-out">
+          <Button
+            variant="outline"
+            className="bg-background text-foreground transition-all duration-300 ease-in-out hover:text-primary-foreground"
+          >
             <svg
-              className="w-6 h-6 mr-2"
+              className="mr-2 size-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -32,5 +35,5 @@ export default function VideoDemo() {
         </div>
       </div>
     </section>
-  )
+  );
 }
