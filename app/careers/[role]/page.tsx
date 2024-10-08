@@ -1,5 +1,7 @@
 import { roleListings } from "@/components/role-data";
 
+export const runtime = "edge";
+
 export default function RolePage({ params }: { params: { role: string } }) {
   // Find the job details using the job ID from the URL
   const roleDetails = roleListings.find((roleItem) => roleItem.uid === params.role);
