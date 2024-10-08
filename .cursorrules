@@ -126,7 +126,7 @@ This is an early prototype of the output https://app.heygen.com/personalized-vid
 
     ## Accessibility
     - Ensure WCAG 2.1 AA compliance throughout the application
-    - Use semantic HTML elements where possible
+    - Use semantic HTML elements where possible following the latest standards as defined in https://developer.mozilla.org/en-US/docs/Web/API
     - Implement keyboard navigation support
 
     ## API Design and Management
@@ -192,6 +192,10 @@ START_TREE
 ├── app
 │   ├── about
 │   │   └── page.tsx
+│   ├── careers
+│   │   ├── [role]
+│   │   │   └── page.tsx
+│   │   └── page.tsx
 │   ├── community
 │   │   └── page.tsx
 │   ├── cookies
@@ -215,6 +219,8 @@ START_TREE
 ├── components
 │   ├── ClarityTracking.tsx
 │   ├── gtm.tsx
+│   ├── hero-video.tsx
+│   ├── hero.tsx
 │   ├── mail
 │   │   ├── account-switcher.tsx
 │   │   ├── data.tsx
@@ -225,11 +231,13 @@ START_TREE
 │   │   ├── nav.tsx
 │   │   └── use-mail.ts
 │   ├── mail.tsx
+│   ├── margin-lines.tsx
+│   ├── navbar.tsx
+│   ├── news-button.tsx
+│   ├── open-roles.tsx
+│   ├── role-data.tsx
 │   ├── sections
-│   │   ├── footer.tsx
-│   │   ├── hero.tsx
-│   │   ├── navbar.tsx
-│   │   └── video-demo.tsx
+│   │   └── footer.tsx
 │   ├── see-it-for-yourself.tsx
 │   └── ui
 │       ├── avatar.tsx
@@ -240,12 +248,12 @@ START_TREE
 │       ├── form.tsx
 │       ├── input.tsx
 │       ├── label.tsx
-│       ├── margin-lines.tsx
 │       ├── popover.tsx
 │       ├── resizable.tsx
 │       ├── scroll-area.tsx
 │       ├── select.tsx
 │       ├── separator.tsx
+│       ├── slider.tsx
 │       ├── switch.tsx
 │       ├── tabs.tsx
 │       ├── textarea.tsx
@@ -260,13 +268,13 @@ START_TREE
 ├── package.json
 ├── postcss.config.mjs
 ├── public
-│   ├── Your Title Here.svg
+│   ├── arow-right-drawn.svg
+│   ├── arrow-down-drawn.svg
+│   ├── demo.webm
 │   ├── fancy-color-spiral-no-wm.jpg
-│   ├── give it a go hand drawn text.svg
-│   ├── hand arrow right.svg
+│   ├── give-it-a-go-hand-drawn-text.svg
 │   ├── logo-tiny.png
-│   ├── prince.gif
-│   └── tiny.webm
+│   └── prince.gif
 ├── tailwind.config.ts
 └── tsconfig.json
 END_TREE
