@@ -1,31 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const handleCommunityClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     window.open("https://discord.gg/wNawfptZrZ", "_blank");
   };
 
   return (
-    <nav
-      className={`sticky inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-background/70 shadow-md backdrop-blur-lg" : ""}`}
-    >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav className={`inset-x-0 top-0 z-50`}>
+      <div className="loomli-max-screen px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between p-4">
           <Link href="/" className="inline-flex items-center">
             <Image
@@ -68,9 +55,9 @@ export default function Navbar() {
           </Button>
         </div>
       </div>
-      {/* Bottom border animation */}
+      {/* Navbar bottom border */}
       <div
-        className={`absolute inset-x-0 bottom-0 h-px bg-zinc-300 transition-all duration-300 ${scrolled ? "hidden" : ""}`}
+        className={`inset-x-0 bottom-0 h-px border-b border-dashed border-zinc-200`}
       ></div>
     </nav>
   );
