@@ -1,4 +1,4 @@
-import Hero from '@/components/sections/hero'
+import Hero from '@/components/hero'
 
 export const runtime = "edge"
 
