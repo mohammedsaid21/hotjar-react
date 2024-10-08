@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import {
   Play,
   Pause,
@@ -60,7 +60,7 @@ export default function HeroVideo({
   };
 
   // Function to handle video progress
-  const handleProgress = () => {
+  const handleProgress = useCallback(() => {
     if (videoRef.current) {
       const progress =
         (videoRef.current.currentTime / videoRef.current.duration) * 100;
@@ -70,7 +70,7 @@ export default function HeroVideo({
         videoRef.current.currentTime = 0;
       }
     }
-  };
+  }, [hasStarted]);
 
   // Function to handle volume change
   const handleVolumeChange = (value: number[]) => {
@@ -173,7 +173,7 @@ export default function HeroVideo({
         videoElement.removeEventListener("ended", () => {});
       }
     };
-  }, [hasStarted]);
+  }, [hasStarted, handleProgress]);
 
   // Effect to start video muted on initial load
   useEffect(() => {
@@ -194,7 +194,7 @@ export default function HeroVideo({
         {/* Video element */}
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full cursor-pointer object-cover"
+          className="absolute inset-0 size-full cursor-pointer object-cover"
           src={src}
           poster={poster}
           playsInline
@@ -219,14 +219,14 @@ export default function HeroVideo({
           >
             <Button
               size="icon"
-              className={`h-32 w-32 rounded-full bg-accent-foreground text-white transition-all duration-300 ${
+              className={`size-32 rounded-full bg-accent-foreground text-white transition-all duration-300 ${
                 isHovered ? "scale-110 opacity-100" : "opacity-90"
               }`}
             >
               {isPlaying && hasStarted ? (
-                <Pause className="h-8 w-8" />
+                <Pause className="size-8" />
               ) : (
-                <Play className="h-8 w-8" />
+                <Play className="size-8" />
               )}
             </Button>
           </div>
@@ -235,156 +235,154 @@ export default function HeroVideo({
         {/* Control bar */}
         {hasStarted && (
           <div
-            className={`absolute bottom-0 left-0 right-0 bg-transparent transition-all duration-300 ${
-              (isHovered || !isPlaying) ? "translate-y-0" : "translate-y-[80%]"
+            className={`absolute inset-x-0 bottom-0 bg-transparent transition-all duration-300 ${
+              isHovered || !isPlaying ? "translate-y-0" : "translate-y-[80%]"
             }`}
           >
             {/* Progress bar in control area */}
-          <div className="pt-2">
-            <Slider
-              className="w-full"
-              value={[progress]}
-              max={100}
-              step={0.1}
-              onValueChange={(value) => {
-                if (videoRef.current) {
-                  videoRef.current.currentTime =
-                    (value[0] / 100) * videoRef.current.duration;
-                }
-              }}
-            />
-          </div>
+            <div className="pt-2">
+              <Slider
+                className="w-full"
+                value={[progress]}
+                max={100}
+                step={1}
+                onValueChange={(value) => {
+                  if (videoRef.current) {
+                    videoRef.current.currentTime =
+                      (value[0] / 100) * videoRef.current.duration;
+                  }
+                }}
+              />
+            </div>
 
-          {/* Control buttons */}
-          <div
-            className="flex items-center justify-between space-x-2 rounded-b-md bg-gradient-to-t from-black/90 via-black/70 to-transparent p-2 text-white transition-all duration-300"
-          >
-            {/* Left side controls */}
-            <div className="flex items-center space-x-2">
-              {/* Skip backward button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white hover:bg-white/20"
-                onClick={skipBackward}
-              >
-                <div className="relative">
-                  <RotateCcw className="h-5 w-5" />
-                  <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-xs">
-                    5
-                  </span>
-                </div>
-              </Button>
-
-              {/* Play/Pause button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white hover:bg-white/20"
-                onClick={togglePlay}
-              >
-                {isPlaying ? (
-                  <Pause className="h-5 w-5" />
-                ) : (
-                  <Play className="h-5 w-5" />
-                )}
-              </Button>
-
-              {/* Skip forward button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white hover:bg-white/20"
-                onClick={skipForward}
-              >
-                <div className="relative">
-                  <RotateCw className="h-5 w-5" />
-                  <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform text-xs font-bold">
-                    5
-                  </span>
-                </div>
-              </Button>
-
-              {/* Volume control */}
-              <div className="relative" onMouseLeave={handleVolumeMouseLeave}>
+            {/* Control buttons */}
+            <div className="flex items-center justify-between space-x-2 rounded-b-md bg-gradient-to-t from-black/90 via-black/70 to-transparent p-2 text-white transition-all duration-300">
+              {/* Left side controls */}
+              <div className="flex items-center space-x-2">
+                {/* Skip backward button */}
                 <Button
                   variant="ghost"
                   size="icon"
                   className="text-white hover:bg-white/20"
-                  onClick={toggleMute}
-                  onMouseEnter={handleVolumeMouseEnter}
+                  onClick={skipBackward}
                 >
-                  {isMuted ? (
-                    <VolumeX className="h-5 w-5" />
+                  <div className="relative">
+                    <RotateCcw className="size-5" />
+                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs">
+                      5
+                    </span>
+                  </div>
+                </Button>
+
+                {/* Play/Pause button */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/20"
+                  onClick={togglePlay}
+                >
+                  {isPlaying ? (
+                    <Pause className="size-5" />
                   ) : (
-                    <Volume2 className="h-5 w-5" />
+                    <Play className="size-5" />
                   )}
                 </Button>
-                {/* Volume Slider with Slide-in/Slide-out Animations */}
-                <div
-                  ref={volumeSliderRef}
-                  className={`absolute left-full top-1/2 ml-2 -translate-y-1/2 transform ${
-                    showVolumeSlider
-                      ? 'animate-slide-in-left'
-                      : 'animate-slide-out-left opacity-0 pointer-events-none'
-                  }`}
-                  onMouseEnter={handleVolumeMouseEnter}
-                  onMouseLeave={handleVolumeMouseLeave}
+
+                {/* Skip forward button */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/20"
+                  onClick={skipForward}
                 >
-                  <Slider
-                    className="w-24"
-                    value={[isMuted ? 0 : videoRef.current?.volume || 0]}
-                    max={1}
-                    step={0.01} // Smoother slider movement
-                    onValueChange={handleVolumeChange}
-                  />
+                  <div className="relative">
+                    <RotateCw className="size-5" />
+                    <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xs font-bold">
+                      5
+                    </span>
+                  </div>
+                </Button>
+
+                {/* Volume control */}
+                <div className="relative" onMouseLeave={handleVolumeMouseLeave}>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="text-white hover:bg-white/20"
+                    onClick={toggleMute}
+                    onMouseEnter={handleVolumeMouseEnter}
+                  >
+                    {isMuted ? (
+                      <VolumeX className="size-5" />
+                    ) : (
+                      <Volume2 className="size-5" />
+                    )}
+                  </Button>
+                  {/* Volume Slider with Slide-in/Slide-out Animations */}
+                  <div
+                    ref={volumeSliderRef}
+                    className={`absolute left-full top-1/2 ml-2 -translate-y-1/2 ${
+                      showVolumeSlider
+                        ? "animate-slide-in-left"
+                        : "animate-slide-out-left pointer-events-none opacity-0"
+                    }`}
+                    onMouseEnter={handleVolumeMouseEnter}
+                    onMouseLeave={handleVolumeMouseLeave}
+                  >
+                    <Slider
+                      className="w-24"
+                      value={[isMuted ? 0 : videoRef.current?.volume || 0]}
+                      max={1}
+                      step={0.01} // Smoother slider movement
+                      onValueChange={handleVolumeChange}
+                    />
+                  </div>
                 </div>
-              </div>
               </div>
 
               {/* Time display */}
               <div className="text-sm">
-              {formatTime(currentTime)} / {formatTime(duration)}
-            </div>
+                {formatTime(currentTime)} / {formatTime(duration)}
+              </div>
 
-            {/* Right side controls */}
-            <div className="flex items-center space-x-2">
-              {/* Playback speed control */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-white hover:bg-white/20"
-                  >
-                    {playbackSpeed}x
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  {[0.5, 1, 1.5, 2].map((speed) => (
-                    <DropdownMenuItem
-                      key={speed}
-                      onSelect={() => handlePlaybackSpeedChange(speed)}
+              {/* Right side controls */}
+              <div className="flex items-center space-x-2">
+                {/* Playback speed control */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-white hover:bg-white/20"
                     >
-                      {speed}x
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
+                      {playbackSpeed}x
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {[0.5, 1, 1.5, 2].map((speed) => (
+                      <DropdownMenuItem
+                        key={speed}
+                        onSelect={() => handlePlaybackSpeedChange(speed)}
+                      >
+                        {speed}x
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
 
-              {/* Fullscreen button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white hover:bg-white/20"
-                onClick={handleFullscreen}
-              >
-                <Maximize className="h-5 w-5" />
-              </Button>
+                {/* Fullscreen button */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/20"
+                  onClick={handleFullscreen}
+                >
+                  <Maximize className="size-5" />
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
     </div>
   );
