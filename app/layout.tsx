@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/sections/navbar";
 import Footer from "@/components/sections/footer";
-import MarginLines from "@/components/ui/margin-lines";
+import MarginLines from "@/components/margin-lines";
 import Script from "next/script";
 import GTM from "@/components/gtm";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -30,19 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={`${inter.variable}`}>
       <head>
         <GTM />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-full flex-col overflow-x-hidden bg-background text-foreground antialiased`}
+        className={`${inter.variable} flex min-h-screen flex-col overflow-x-hidden bg-background font-extralight text-foreground antialiased`}
       >
         <Navbar />
-        <div className="flex grow flex-col">
-          <MarginLines>
-            <main className="grow">{children}</main>
-          </MarginLines>
-        </div>
+        <MarginLines>
+          <main className="mb-auto w-full">{children}</main>
+        </MarginLines>
         <Footer />
 
         <Script id="microsoft-clarity" strategy="afterInteractive">
