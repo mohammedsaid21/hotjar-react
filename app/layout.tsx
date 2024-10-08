@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/sections/navbar";
-import Footer from "@/components/sections/footer";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import MarginLines from "@/components/margin-lines";
 import Script from "next/script";
 import GTM from "@/components/gtm";
