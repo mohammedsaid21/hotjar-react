@@ -7,7 +7,7 @@ import SeeItForYourself from "@/components/see-it-for-yourself";
 export default function Hero() {
   return (
     <section className="overflow-visible p-6 text-foreground md:p-16">
-      <header className="grid grid-cols-1 gap-8 2xl:grid-cols-2">
+      <header className="grid grid-cols-1 text-center gap-8 2xl:grid-cols-2 2xl:text-left">
         <div className="flex flex-col justify-start">
           <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
             Recruit{" "}

@@ -26,3 +26,4 @@
 *.webp
 *.svg
 *.ico
+*.env*
