@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
 import {
@@ -12,30 +11,17 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-
+import UserMenu from "@/components/UserMenu";
 import Image from "next/image";
+import { X } from "lucide-react";
 
 export default function Navbar() {
   const router = useRouter();
-  const supabase = createClientComponentClient();
   const { session, loading } = useAuth();
 
   const [userName, setUserName] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (session?.user) {
-      /* Try to get the user's name from the user metadata */
-      const name =
-        session.user.user_metadata?.full_name ||
-        session.user.user_metadata?.name;
-      /* If no name is found, fall back to the email */
-      setUserName(name || session.user.email);
-    } else {
-      setUserName(null);
-    }
-  }, [session]);
-
   const [isLoading, setIsLoading] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSignOut = async () => {
     setIsLoading(true);
@@ -54,6 +40,35 @@ export default function Navbar() {
     e.preventDefault();
     window.open("https://discord.gg/wNawfptZrZ", "_blank");
   };
+
+  const handleTalkWithFounderClick = () => {
+    setIsModalOpen(true);
+    document.body.style.overflow = "hidden"; // Disable scrolling on the main page
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = ""; // Re-enable scrolling on the main page
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      const modalContent = document.getElementById("modal-content");
+      if (modalContent && !modalContent.contains(event.target as Node)) {
+        closeModal();
+      }
+    };
+
+    if (isModalOpen) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    } else {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isModalOpen]);
 
   return (
     <nav className={`inset-x-0 top-0 z-50`}>
@@ -92,36 +107,17 @@ export default function Navbar() {
               Docs
             </Link>
           </div>
-          <Button
-            variant="outline"
-            className="mr-2 bg-background text-foreground transition-all duration-300 ease-in-out hover:bg-primary hover:text-primary-foreground"
-          >
-            Book a call
-          </Button>
-          {session ? (
-            <>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className="mr-2 bg-background text-foreground transition-all duration-300 ease-in-out hover:bg-primary hover:text-primary-foreground"
-                  >
-                    {userName || "User"}
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem
-                    onClick={handleSignOut}
-                    disabled={isLoading}
-                    className="cursor-pointer"
-                  >
-                    {isLoading ? "Signing out..." : "Sign out"}
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </>
-          ) : (
-            <>
+          <div>
+            <Button
+              variant="ghost"
+              className="mr-2 bg-background text-foreground transition-all duration-300 ease-in-out hover:bg-primary hover:text-primary-foreground"
+              onClick={handleTalkWithFounderClick} // Open modal on click
+            >
+              Talk with founder
+            </Button>
+            {session ? (
+              <UserMenu />
+            ) : (
               <Link href="/signin">
                 <Button
                   variant="outline"
@@ -131,12 +127,44 @@ export default function Navbar() {
                   {loading ? "Loading..." : "Sign in"}
                 </Button>
               </Link>
-            </>
-          )}
+            )}
+          </div>
         </div>
       </div>
       {/* Navbar bottom border */}
       <div className="inset-x-0 bottom-0 h-px border-b border-dashed border-zinc-200"></div>
+
+      {/* Modal Implementation */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-100"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+        >
+          <div
+            id="modal-content"
+            className="bg-white rounded-lg shadow-lg w-11/12 md:w-4/5 lg:w-3/5 h-3/4 relative overflow-auto"
+          >
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
+              onClick={closeModal}
+              aria-label="Close modal"
+            >
+              <X size={24} />
+            </button>
+            <h2 id="modal-title" className="sr-only">
+              Schedule Appointment
+            </h2>
+            <iframe
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0MTIh4QwpESXOgX7zUsNRHBJLhOSz2QK-WxaD5ztSovmD35pvrj53-jhkSD1vUQ-gePvE2hfQY?gv=true"
+              title="Schedule Appointment"
+              className="w-full h-full rounded-lg border-0 shadow-xl"
+              sandbox="allow-scripts allow-same-origin allow-popups"
+            ></iframe>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
