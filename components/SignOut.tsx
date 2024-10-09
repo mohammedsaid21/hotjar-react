@@ -1,22 +1,20 @@
 // components/SignOut.tsx
-'use client'
+"use client";
 
-import { useAuth } from './AuthProvider'
-import { useRouter } from 'next/navigation'
-import { Button } from './ui/button'
+import { useAuth } from "./auth-provider";
+import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 export default function SignOut() {
-  const { supabase } = useAuth()
-  const router = useRouter()
+  const { supabase } = useAuth();
+  const router = useRouter();
 
   const handleSignOut = async () => {
     if (supabase) {
-      await supabase.auth.signOut()
-      router.push('/')
+      await supabase.auth.signOut();
+      router.push("/");
     }
-  }
+  };
 
-  return (
-    <Button onClick={handleSignOut}>Sign Out</Button>
-  )
+  return <Button onClick={handleSignOut}>Sign Out</Button>;
 }

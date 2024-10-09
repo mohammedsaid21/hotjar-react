@@ -3,42 +3,18 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import UserMenu from "@/components/UserMenu";
+import UserMenu from "@/components/user-menu";
 import Image from "next/image";
 import { X } from "lucide-react";
 
 export default function Navbar() {
-  const router = useRouter();
   const { session, loading } = useAuth();
-
-  const [userName, setUserName] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleSignOut = async () => {
-    setIsLoading(true);
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) throw error;
-      router.refresh();
-    } catch (error) {
-      console.error("Error signing out:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleCommunityClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    window.open("https://discord.gg/wNawfptZrZ", "_blank");
+    window.open("https://discord.gg/invite/wNawfptZrZ", "_blank");
   };
 
   const handleTalkWithFounderClick = () => {
