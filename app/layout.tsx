@@ -6,8 +6,8 @@ import Footer from "@/components/footer";
 import MarginLines from "@/components/margin-lines";
 import Script from "next/script";
 import GTM from "@/components/gtm";
-import SupabaseProvider from "@/components/SupabaseProvider";
-import { AuthProvider } from '@/components/AuthProvider';
+import SupabaseProvider from "@/components/supabase-provider";
+import { AuthProvider } from '@/components/auth-provider';
 
 const inter = Inter({
   subsets: ["latin"],

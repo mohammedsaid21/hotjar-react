@@ -1,9 +1,9 @@
 // components/SignOut.tsx
 "use client";
 
-import { useAuth } from "./auth-provider";
+import { useAuth } from "@/components/auth-provider";
 import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function SignOut() {
   const { supabase } = useAuth();

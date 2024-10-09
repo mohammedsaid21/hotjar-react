@@ -11,9 +11,9 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import GoogleSignInButton from "./google-signin";
+import GoogleSignInButton from "@/components/google-signin";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./AuthProvider";
+import { useAuth } from "@/components/auth-provider";
 
 export default function SignInForm() {
   const [email, setEmail] = useState("");

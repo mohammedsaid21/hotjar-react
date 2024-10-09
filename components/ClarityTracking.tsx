@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
 declare global {
   interface Window {
@@ -10,7 +10,7 @@ declare global {
 
 export default function ClarityTracking() {
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.clarity) {
+    if (typeof window !== "undefined" && window.clarity) {
       window.clarity("set", "pricing_page_view", "true");
     }
   }, []);

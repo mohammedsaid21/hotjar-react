@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useAuth } from "@/components/AuthProvider";
+import { useAuth } from "@/components/auth-provider";
 import UserMenu from "@/components/user-menu";
 import Image from "next/image";
 import { X } from "lucide-react";
@@ -113,17 +113,17 @@ export default function Navbar() {
       {/* Modal Implementation */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-100"
+          className="z-100 fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
         >
           <div
             id="modal-content"
-            className="bg-white rounded-lg shadow-lg w-11/12 md:w-4/5 lg:w-3/5 h-3/4 relative overflow-auto"
+            className="relative h-3/4 w-11/12 overflow-auto rounded-lg bg-white shadow-lg md:w-4/5 lg:w-3/5"
           >
             <button
-              className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
+              className="absolute right-2 top-2 text-gray-500 hover:text-red-500"
               onClick={closeModal}
               aria-label="Close modal"
             >
@@ -135,7 +135,7 @@ export default function Navbar() {
             <iframe
               src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0MTIh4QwpESXOgX7zUsNRHBJLhOSz2QK-WxaD5ztSovmD35pvrj53-jhkSD1vUQ-gePvE2hfQY?gv=true"
               title="Schedule Appointment"
-              className="w-full h-full rounded-lg border-0 shadow-xl"
+              className="size-full rounded-lg border-0 shadow-xl"
               sandbox="allow-scripts allow-same-origin allow-popups"
             ></iframe>
           </div>

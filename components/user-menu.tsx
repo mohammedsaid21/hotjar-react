@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useAuth } from "@/components/AuthProvider";
+import { useAuth } from "@/components/auth-provider";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -23,7 +23,8 @@ export default function UserMenu() {
   useEffect(() => {
     if (session?.user) {
       const name =
-        session.user.user_metadata?.full_name || session.user.user_metadata?.name;
+        session.user.user_metadata?.full_name ||
+        session.user.user_metadata?.name;
       setUserName(name || session.user.email);
     } else {
       setUserName(null);
